@@ -1,0 +1,41 @@
+.unlink{
+    text-decoration: none;
+}
+.number{
+    font-size: 12px;
+    padding: 10px;
+    font-weight: bold;
+}
+.special-1{
+    color: white;
+  
+   
+    background-color: red;
+    text-align: center;
+}
+.special-2{
+    color: #1abc9c;
+  
+    
+  
+}
+.special-3{
+    color: #f39c12;
+  
+    
+    
+}
+
+.thumbnail-music .number.special-1{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 32px;
+    width: 32px;
+  
+    
+    
+}
+.thumbnail-music{
+position: relative;
+}
