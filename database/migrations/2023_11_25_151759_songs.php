@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
            
-            $table->unsignedBigInteger('artist_id')->nullable();
+            // $table->unsignedBigInteger('artist_id')->nullable();
+            $table->string('song_url')->nullable();
             $table->string('song_img')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('set null');
+            // $table->foreign('artist_id')->references('id')->on('artists')->onDelete('set null');
+            $table->timestamps();
 
         });
     }
@@ -30,6 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('songs');
+        //
     }
+    
 };
