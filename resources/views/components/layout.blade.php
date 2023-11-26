@@ -99,10 +99,16 @@
 
     
         <!-- Page content-->
-        <div class="pt-5 container">
+
+        <div class="mt-5" style="margin:100px">
+
             {{$slot}}
         </div>
-              
+
+        {{-- <!-- Playing -->
+        <div class="position-fixed w-100 bottom-0 bg-primary" style="height: 100px;background-color: gray;">
+            <p>asd</p>
+        </div>      --}}
                 
        
         <!-- Footer-->
