@@ -1,3 +1,4 @@
+
 <x-layout>
     <div class="mt-10 container" style="height: 1000px;">
         <br>
@@ -6,10 +7,12 @@
                 <h5 class=" text-xl">Trang chủ > Depacito</h5>
                 <div class="player-container">
                     <audio id="song" >
-                        <source type="audio/mpeg" src="https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3">
+                    
+                        <source type="audio/mpeg" src="{{asset('storage/' . $song->song_url)}}">
                     </audio>
+                    {{-- https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3 --}}
                     <div class="progress-container">
-                        <h4>Despacito</h4>
+                        <h4> {{$song->title}}</h4>
                         <p class="opacity-75">Muhammederdem</p>
                         <input id="progress" type="range" value=0>
                     </div>

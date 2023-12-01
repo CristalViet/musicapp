@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('views', function (Blueprint $table) {
+        Schema::create('song_playlist', function (Blueprint $table) {
             $table->id();
-          
+            $table->unsignedBigInteger('playlist_id');
             $table->unsignedBigInteger('song_id');
-            $table->unsignedBigInteger('user_id');
-   
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->after('id');
+            $table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('cascade')->after('id');
             $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade')->after('id');
             $table->timestamps();
+            
+           
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('views');
+        //
     }
 };

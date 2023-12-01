@@ -13,8 +13,9 @@
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
             
-            <form action="/user/setting" enctype="multipart/form-data" method="POST">
-                @csrf
+            <form action="{{route('update-avatar')}}" enctype="multipart/form-data" method="POST">
+                <meta name="csrf-token" content="{{ csrf_token() }}">
+
                 @method('PUT')
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
@@ -81,7 +82,7 @@
                        
                     </div>
                 </div>
-                <div class="row mb-3 align-items-center">
+                {{-- <div class="row mb-3 align-items-center">
                     <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Ảnh') }}</label>
 
                     <div class="col-md-6">
@@ -90,7 +91,7 @@
                             <img src="" alt="" id="avatarPreview" style="max-width: 100%; max-height: 200px;">
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 
 
                 <div class="row mb-0">
@@ -122,7 +123,9 @@
         })
 
         $('#avatarInput').change(function(){
+            
             var file=this.files[0];
+            
             if(file){
           
 
@@ -131,23 +134,43 @@
                 
                 formData.append('avatar',file);
                 formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                console.log($('meta[name="csrf-token"]').attr('content'));
-
+                // console.log($('meta[name="csrf-token"]').attr('content'));
+                            for (var pair of formData.entries()) {
+                // pair[0] là tên trường, pair[1] là giá trị (trong trường hợp này là File)
+                
+                // Kiểm tra xem giá trị có phải là File không
+                if (pair[1] instanceof File) {
+                    // Lấy tên của File
+                    var fileName = pair[1].name;
+                    var fileSize = pair[1].size;
+                    console.log('Tên file:', fileName);
+                    console.log('Tên file:', fileSize);
+                }
+            }
                 $.ajax({
-                    url:'/user/setting',
-                    method:'PUT',
+                    url:'{{route('update-avatar')}}',
+                    method:'POST',
                     data: formData,
                     processData:false,
                     contentType:false,
-                    
-                    success:function(response){
-                        // $('#avatarPreview').attr('src',response.avatarLink);
-                        alert('Cap nhap avatar thanh cong.');
-                    },
-                    error: function(error){
-                        console.log(error);
-                        alert('Có lỗi xảy ra khi cập nhập avatar');
-                    }
+                    headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+               
+                         },
+                    // success:function(response){
+                    //     // $('#avatarPreview').attr('src',response.avatarLink);
+                    //     alert('Cap nhap avatar thanh cong.');
+                    // },
+                    // error: function(error){
+                    //     console.log(error);
+                    //     alert('Có lỗi xảy ra khi cập nhập avatar');
+                    // }
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
                 });
             }
         });

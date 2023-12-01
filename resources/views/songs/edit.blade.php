@@ -1,22 +1,22 @@
-
-<x-userSettingLayout : activeTab="Songs">
-        <h2>Tại nhạc của bạn lên FunTune</h2>
-        <form id="uploadForm" action="{{route('storeSong')}}" method="POST" enctype="multipart/form-data">
+<x-userSettingLayout : activeTab="songs">
+    <h2>Chỉnh sửa thông tin bài hát của bạn trên FunTune</h2>
+        <form id="uploadForm" action="{{route('updateSong',[$song])}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                         <label for="">Tên bài hát</label>
-                        <input type="text" name="nameSong" class="form-control">
+                        <input type="text" name="title" class="form-control">
                 </div>
                 
                 <div class="form-group">
                         <label for="">Mô tả</label>
                         <input type="text" name="description" class="form-control">
                 </div>
-                <input type="file" name="music_file" id="inputFile" class="d-none">
+                <input type="file" name="music_file" id="inputFile" class="d-none" accept=".mp3">
                 <div class="btn btn-secondary" onclick="clickFile()">Thêm tệp</div>
                 <div class="btn btn-secondary" onclick="addFile()">Xác nhân tải lên</div>
                 @error('music_file')
-                    
+                    <p>{{$message}} </p>
                 @enderror
                 <div id="fileInfo"></div>
                 <div id="fileInfo2"></div>
@@ -44,15 +44,7 @@
                 });
         }
         function addFile(){
-            if(selectedFile==null){
-                alert('Hãy chọn tệp');
-
-            }
-            else{
-                // alert('Tải lên tệp thành công ' + selectedFile.name);
-                
-                document.getElementById('uploadForm').submit();
-            }
+            document.getElementById('uploadForm').submit();
                
 
         }

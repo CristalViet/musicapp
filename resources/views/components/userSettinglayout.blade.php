@@ -5,7 +5,7 @@
        
 
 
-                <div class="col-4">
+                <div class="col-2">
                     <div class="list-group" id="list-tab" role="tablist">
                       
                       <a class="list-group-item list-group-item-action {{ $activeTab == 'home' ? 'active' : '' }} " id="list-home-list" data-toggle="list" href="{{route('userDashBoard')}}"  aria-controls="home">Home</a>
@@ -15,7 +15,7 @@
                       <a class="list-group-item list-group-item-action {{ $activeTab == 'history' ? 'active' : '' }}" id="list-settings-list" data-toggle="list" href="#list-settings"  aria-controls="settings">History</a>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-10">
                    {{$slot}}
                 </div>
                 

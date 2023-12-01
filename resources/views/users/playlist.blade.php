@@ -1,20 +1,68 @@
+@php
+    $count=0;
+@endphp
 <x-userSettingLayout : activeTab="playlist">
-    <div class="fs-1">Danh sách playlist của bạn</div>
+    <div class="row">
+        <div class="fs-1">Playlist của bạn</div>
         <div class="d-flex">
             <input type="checkbox" name="" id="">
             <div class="btn btn-secondary ms-1">Xóa</div>
-            <div class="btn btn-secondary ms-1">Thêm playlist</div>
+            <a href="{{route('addPlaylist')}}">
+                <div class="btn btn-secondary ms-1">Thêm bài hát</div>
+            </a>
+            
         </div>
         
         <div class="divider"></div>
-        <ul class="list-unstyled">
-            <li>
-                <div class="row">
-                    <div class=" col-0 col-sm-0 col-md-4 ">
-                        <img width="200px" height="200px" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqvBg_Uy3OSOqXTlzmxyz7woi7fAPBTmOVb_JcLX8qttbs8Zid" alt="">
-                    </div>
-                    <div class="col-8"></div>
-                </div>
-            </li>
-        </ul>
+        {{-- List song --}}
+        <table >
+            <th>STT</th>
+            <th>Tên bài hát</th>
+            <th>Chức năng</th>
+            <tr>
+                <td>1</td>
+                <td>Vì ngày xưa</td>
+                <td>
+                    <a href="Sửa" class="unlink ms-1">
+                        <i
+                        class="fa-solid fa-pen-to-square"></i> Sửa
+                    </a>
+
+                    <a href="Xóa" class="unlink ms-1">
+                        <i
+                        class="fa-solid fa-pen-to-square"></i> Xóa
+                    </a>
+                </td>
+               
+            </tr>
+            {{-- @foreach ($songs as $song)
+            @php
+                $count++;
+            @endphp 
+             <tr>
+               
+                <td> {{playlist}} </td>
+                <td>{{playlist  }}</td>
+                <td> 
+                    <a href="{{route('showInfoSong',[$song])}}" class="btn btn-secondary unlink ms-1">
+                        <i
+                        class="fa-solid fa-pen-to-square"></i> Sửa
+                    </a> 
+                    <form id="deleteSong" action="songs/{{$song->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button  class=" btn btn-secondary unlink ms-1" type="submit">
+                            <i
+                            class="fa-solid fa-pen-to-square"></i> Xóa
+                    </button>
+                    </form> 
+                    
+                 
+                    
+                 </td>
+               
+            </tr>
+            @endforeach --}}
+        </table>
+    </div>
 </x-userSettingLayout>

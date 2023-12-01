@@ -1,3 +1,6 @@
+@php
+    $count=0;
+@endphp
 <x-userSettingLayout : activeTab="songs">
     <div class="row">
         <div class="fs-1">Bài hát của mình</div>
@@ -32,6 +35,37 @@
                 </td>
                
             </tr>
+            @foreach ($songs as $song)
+            @php
+                $count++;
+            @endphp
+            <tr>
+               
+                <td> {{$count}} </td>
+                <td>{{$song->title}}</td>
+                <td>
+                    <a href="{{route('showInfoSong',[$song])}}" class="btn btn-secondary unlink ms-1">
+                        <i
+                        class="fa-solid fa-pen-to-square"></i> Sửa
+                    </a>
+                    <form id="deleteSong" action="songs/{{$song->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button  class=" btn btn-secondary unlink ms-1" type="submit">
+                            <i
+                            class="fa-solid fa-pen-to-square"></i> Xóa
+                    </button>
+                    </form>
+                    
+                 
+                    
+                </td>
+               
+            </tr>
+            @endforeach
         </table>
     </div>
 </x-userSettingLayout>
+<script>
+   
+</script>

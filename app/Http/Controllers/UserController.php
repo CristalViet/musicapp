@@ -13,16 +13,31 @@ class UserController extends Controller
         $request->validate([
             'avatar'=>'image|mines:jpeg,png,jpg|max:2048',
         ]);
-    
-        $path=$request->file('avatar')->store('public/avatars');
-        $user=Auth::user();
         
-        $user['avatarLink']=basename($path);
+       
+            
+            
+            $path=$request->file('avatar');
+            $user=Auth::user();
+            $user->avatarLink=$path;
+            
+            
+            
+            // $user->update([
+            //     'avatarLink'=>$pathx
+            // ]
+               
+            // );
+            DB::table('users')
+            ->where('id',$user['id'])
+            ->update(['avatarLink'=> $user['avatarLink']]);
+            return response()->json(['avatarLink'=>$path]);
     
-        DB::table('users')
-        ->where('id',$user['id'])
-        ->update(['avatarLink'=> $user['avatarLink']]);
-        return response()->json(['avatarLink'=>asset('avatars/'.basename($path))]);
+        
+    
+        
+        
+        // return response()->json(['avatarLink'=>asset('avatars/'.basename($path))]);
 
 
     }
@@ -39,6 +54,7 @@ class UserController extends Controller
             ->where('id',$user['id'])
             ->update(['name'=> $formField['name']]);
         
-    }
+        return redirect(route('settingView'));
+    }   
 }
  
