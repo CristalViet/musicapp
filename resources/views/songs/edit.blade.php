@@ -5,12 +5,12 @@
                 @method('PUT')
                 <div class="form-group">
                         <label for="">Tên bài hát</label>
-                        <input type="text" name="title" class="form-control">
+                        <input type="text" name="title" class="form-control" value="{{$song->title}}">
                 </div>
                 
                 <div class="form-group">
                         <label for="">Mô tả</label>
-                        <input type="text" name="description" class="form-control">
+                        <input type="text" name="description" class="form-control" value="{{$song->description}}">
                 </div>
                 <input type="file" name="music_file" id="inputFile" class="d-none" accept=".mp3">
                 <div class="btn btn-secondary" onclick="clickFile()">Thêm tệp</div>

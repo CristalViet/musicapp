@@ -1,28 +1,28 @@
-
+@php
+    $playlist=[];
+@endphp
 <x-layout>
-    <div class="mt-10 container" style="height: 1000px;">
-        <br>
+    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 1000px;"></div>        <br>
         <div class="row">
             <div class="col-md-7">
                 <h5 class=" text-xl">Trang chủ > Depacito</h5>
                 <div class="player-container">
                     <audio id="song" >
-                    
-                        <source type="audio/mpeg" src="{{asset('storage/' . $song->song_url)}}">
+                        <source id="source" type="audio/mpeg" src="{{asset('storage/' . $song->song_url )}}">
                     </audio>
-                    {{-- https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3 --}}
                     <div class="progress-container">
-                        <h4> {{$song->title}}</h4>
+                        <h4>Despacito</h4>
                         <p class="opacity-75">Muhammederdem</p>
                         <input id="progress" type="range" value=0>
                     </div>
                     <img class="player-img" src="https://alikinvv.github.io/minimal-player/build/img/album.jpg" alt="">
                     <div class="controls">
-                        <div><i class="fa-solid fa-backward"></i></div>
+                        <div onClick="prev()"><i class="fa-solid fa-backward"></i></div>
                         <div onClick="playPause()"><i id="play-icon" class="fa-solid fa-play"></i></div>
-                        <div><i class="fa-solid fa-forward"></i></div>
+                        <div onClick="next()"><i class="fa-solid fa-forward"></i></div>
                     </div>
                 </div>
+                
                 <div class="d-flex justify-content-between align-items-center  mt-3 px-3">
                     <div class="d-flex align-items-center gap-2">
                         <img class="rounded-circle" style="height: 60px;width:60px;object-fit:cover" alt="" src="https://avatar-nct.nixcdn.com/avatar/2020/06/04/d/9/e/e/1591240258899.jpg">
@@ -76,36 +76,14 @@
                     <hr>
                     <div  style="height:200px;overflow-y:scroll">
                         <table class="table table-hover " >
+                            @foreach($playlist as $key => $item)
                             <tr class="" style="cursor: pointer">
                                 <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">1. <a href="google.com" style="text-decoration: none; color:black">Song 1</a> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
+                                    <p class="m-0">1. <p onClick="changeSong({{$key}})" style="width:fit-content; color:black"><?php echo $item ?></p> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
                                     <i class="fa-solid fa-play text-muted "></i>
                                 </td>
                             </tr>
-                            <tr class="" style="cursor: pointer">
-                                <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">2. <a href="google.com" style="text-decoration: none; color:black">Song 1</a> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
-                                    <i class="fa-solid fa-play text-muted "></i>
-                                </td>
-                            </tr>
-                            <tr class="" style="cursor: pointer">
-                                <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">3. <a href="google.com" style="text-decoration: none; color:black">Song 1</a> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
-                                    <i class="fa-solid fa-play text-muted "></i>
-                                </td>
-                            </tr>
-                            <tr class="" style="cursor: pointer">
-                                <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">4. <a href="google.com" style="text-decoration: none; color:black">Song 1</a> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
-                                    <i class="fa-solid fa-play text-muted "></i>
-                                </td>
-                            </tr>
-                            <tr class="" style="cursor: pointer">
-                                <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">5. <a href="google.com" style="text-decoration: none; color:black">Song 1</a> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
-                                    <i class="fa-solid fa-play text-muted "></i>
-                                </td>
-                            </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
@@ -141,6 +119,11 @@
             </div> 
         </div>
         <script>
+            let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
+            let src=document.getElementById('source');
+            let currentIndex=0;
+            // console.log(playlist[currentIndex])
+            src.setAttribute("src",playlist[currentIndex])
             let progress=document.getElementById('progress');
             let song=document.getElementById('song');
             let playicon=document.getElementById('play-icon');
@@ -170,5 +153,42 @@
                 playicon.classList.add('fa-pause')
                 playicon.classList.remove('fa-play')
             }
+            function next(){
+                if(currentIndex+1>=playlist.length)return;
+                currentIndex++;
+                src.setAttribute("src",playlist[currentIndex])
+                song.currentTime = 0;
+                song.play();
+                console.log(playlist[currentIndex]);
+            }
+            function prev(){
+                if(currentIndex-1<0)return;
+                currentIndex--;
+                src.setAttribute("src",playlist[currentIndex])
+                song.currentTime = 0;
+                song.play();
+                console.log(playlist[currentIndex]);
+            }
+            function changeSong(i){
+                currentIndex=i
+                src.setAttribute("src",playlist[currentIndex])
+                song.currentTime = 0;
+                song.play();
+                playicon.classList.remove('fa-play')
+                playicon.classList.add('fa-pause')
+                console.log(playlist[currentIndex]);
+            }
+            song.addEventListener("ended", function(){
+                currentIndex++;
+                src.setAttribute("src",playlist[currentIndex])
+                song.currentTime = 0;
+                song.play();
+                console.log(playlist[currentIndex]);
+                if(!playlist[currentIndex]){
+                    song.pause()
+                    playicon.classList.add('fa-pause')
+                    playicon.classList.remove('fa-play')
+                }
+            });
         </script>
 </x-layout>

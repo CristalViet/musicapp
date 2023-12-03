@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PlaylistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('users.index');
 });
-Route::get('/video', [SongController::class,'index'])->name('song');
+Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
 
 Auth::routes();
 
@@ -30,10 +31,17 @@ Route::group(['prefix'=>'user'], function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashBoardview'])->name('userDashBoard');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
     // Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('user');
-    Route::get('/userplaylist', [App\Http\Controllers\HomeController::class, 'userPlaylist'])->name('userPlaylist');
+    
+    
+    //Playlist 
+    Route::get('/userplaylist', [PlaylistController::class, 'index'])->name('userPlaylists');
+    Route::get('/addPlaylist', [HomeController::class, 'userAddPlaylistsView'])->name('addPlaylist');
+    Route::post('/addPlaylist', [PlaylistController::class, 'store'])->name('storePlaylist');
+    Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('destroyPlaylist');
+    Route::get('/userplaylist/{playlist}', [SongController::class, 'playlist'])->name('detailPlaylist');
+    //song
     Route::get('/userSongs', [HomeController::class, 'userSongsView'])->name('userSongs');
     Route::get('/addSong', [HomeController::class, 'userAddSongsView'])->name('addSong');
-    Route::get('/addPlaylist', [HomeController::class, 'userAddPlaylistsView'])->name('addPlaylist');
     Route::post('/addSong', [SongController::class, 'store'])->name('storeSong');
     Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('destroySong');
     Route::put('/change', [UserController::class, 'update'])->name('changeInforUser');

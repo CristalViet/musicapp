@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\playlist;
 use App\Models\song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
-    public function index(Request $request){
-        return view('songs.video',[
-             'song'=>song::find(1)
+    public function index($id){
+        return view('songs.song',[
+             'song'=>song::find($id)
+        ]);
+    }
+
+    public function playlist(String $id){
+        $playlist=playlist::find($id);
+        $songs=DB::table('song_playlists')->join('songs','song_playlists.song_id','=','songs.id')
+        ->join('playlists','song_playlists.playlist_id','=','playlists.id')
+        ->where('song_playlists.playlist_id','=',$id)->select('songs.*')->get();
+    //   dd($songs);   
+        return view('playlists.song',[
+             'songs'=>$songs,
+             'playlist'=>$playlist
         ]);
     }
 
@@ -43,7 +57,13 @@ class SongController extends Controller
     }
     public function destroy( $songId){
         $song=song::find($songId);
-        $song->delete();
+        $filePath=$song->song_url;
+       
+        if ($filePath && Storage::disk('public')->exists($filePath)) {
+        
+            $song->delete();
+            Storage::disk('public')->delete($filePath);
+        }
        return redirect(route('userSongs'));
     }
     public function editForm( $songId){

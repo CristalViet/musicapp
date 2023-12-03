@@ -42,11 +42,7 @@ class HomeController extends Controller
   
     //     return view('songs.baihatmoi',['playlist'=>$pla]);
     // }
-    public function userPlaylist()
-    {   
-        $activeTab='playlist';
-        return view('users.playlist',compact('activeTab'));
-    }
+   
     public function userSongsView()
     {   
         $songs=auth()->user()->songs;

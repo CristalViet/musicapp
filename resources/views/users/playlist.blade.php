@@ -8,7 +8,7 @@
             <input type="checkbox" name="" id="">
             <div class="btn btn-secondary ms-1">Xóa</div>
             <a href="{{route('addPlaylist')}}">
-                <div class="btn btn-secondary ms-1">Thêm bài hát</div>
+                <div class="btn btn-secondary ms-1">Tạo playlist mới</div>
             </a>
             
         </div>
@@ -17,24 +17,72 @@
         {{-- List song --}}
         <table >
             <th>STT</th>
-            <th>Tên bài hát</th>
+            <th>Tên playlist</th>
             <th>Chức năng</th>
             <tr>
                 <td>1</td>
                 <td>Vì ngày xưa</td>
                 <td>
-                    <a href="Sửa" class="unlink ms-1">
+                    <button href="Sửa" class="unlink ms-1">
                         <i
                         class="fa-solid fa-pen-to-square"></i> Sửa
-                    </a>
+                    </button>
 
-                    <a href="Xóa" class="unlink ms-1">
-                        <i
-                        class="fa-solid fa-pen-to-square"></i> Xóa
-                    </a>
+                    
+                    {{-- <form id="deleteSong" action="" method="post">
+                        @csrf
+                        @method('delete') --}}
+                        <a href="Xóa" class="unlink ms-1 " type="submit">
+                            <i
+                            class="fa-solid fa-pen-to-square "></i> Xóa
+                        </a>
+                    {{-- </form> --}}
                 </td>
-               
+       
+
+           </tr>
+          
+                @php
+                $count=0;
+                @endphp
+                @foreach ($playlists as $playlist)
+                @php
+                $count++
+                @endphp
+                <tr> 
+                <td> {{$count}}</td>
+                <td><a href="{{ route('detailPlaylist', ['playlist'=>$playlist->id]) }}">{{$playlist->title}}</a> </td>
+                <td >
+                    <div class=" d-flex flex-row">
+                     
+                     
+                        <div >
+                            <button href="" class=" ms-1 btn btn-primary ">
+                                <i class="fa-solid fa-pen-to-square"></i> Sửa
+                            </button>
+                        </div>
+                        <div >
+                            <form id="deleteSong" action="playlists/{{$playlist->id}}" method="post">
+                                @csrf
+                                @method('delete')
+                                
+                                <button href="Xóa" class=" ms-1 btn btn-secondary" type="submit">
+                                    <i
+                                    class="fa-solid fa-pen-to-square "></i> Xóa
+                                </button>
+                            </form>
+                        </div>
+                
+             
+                        
+
+                    </div>
+                    
+                </td>
             </tr>
+                @endforeach
+               
+            
             {{-- @foreach ($songs as $song)
             @php
                 $count++;

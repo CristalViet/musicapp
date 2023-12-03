@@ -6,9 +6,10 @@
     var listSongToAdd=JSON.parse(listsongs.dataset.listsong); 
     var selectedFile;
     var fileInput=document.getElementById('inputFile');
-    var fileInfoDiv=document.getElementById('fileInfo'); 
-    var fileInfoDiv2=document.getElementById('fileInfo2'); 
+    var playlist_send=document.getElementById('playlist_send');
+    var playlistForm=document.getElementById('formPlaylist');
     console.log(listSongToAdd);
+    var divToShow=document.getElementById('divToShow');
     PrintListSong();
 function Test(){
     console.log('Hello')
@@ -32,34 +33,43 @@ function clickItem(id,title){
 
 }
 
-function deleteItem(Id){
+function deleteItem(id){
    
-    var BtnId=Id;
+    var BtnId=id;
     
-    alert('đã click vào nút'+'');
-    if(list.includes(BtnId)){
-        list = list.filter(item => item !== BtnId);
-        console.log(BtnId);
+    alert('đã click vào nút này');
+    // if(list.includes(BtnId)){
+    //     list = list.filter(item => item !== BtnId);
+    //     console.log(BtnId);
+    //     deleteDiv(BtnId);
+    //     console.log('Đã click');
+    // }
+    console.log('test delete'+id);
+    if(list.some(s=>s.id === id)){
+        list = list.filter(item => item['id'] !== id);
+        // console.log(song['id']);
         deleteDiv(BtnId);
-        console.log('Đã click');
+     
+        
+     
     }
     PrintList();
-    Changdisabled();
+    // Changdisabled();
     console.log(list);
     
 }
 function deleteDiv(id){
     var divToRemove=document.getElementById('playlist_'+id);
-
+    console.log('Hello'+divToRemove);
     if (divToRemove) {
         Playlist.removeChild(divToRemove);
     }
 }
-function addDiv(id,count){
-    var BtnId=id;
+function addDiv(song,count){
+    var BtnId=song['id'];
     var htmlString = `
     <div id="playlist_${BtnId}" class="list-group-item list-group-item-action d-flex justify-content-between" data-id="${BtnId}" >
-      <p class="text-truncate">${count} <a href=""> bài hát ${BtnId}</a></p>
+      <p class="text-truncate">${count} <a href=""> bài hát ${song['title']}</a></p>
       <div  class="btn btn-primary">Bỏ</div>
     </div>
   `;        
@@ -69,7 +79,7 @@ function addDiv(id,count){
 function PrintListSong(){
     var count1=0;
     listSongToAdd.forEach(song => {
-        var htmlString=` <div id="${song.id}"  class="list-group-item list-group-item-action d-flex justify-content-between " data-id="${song.id} data-id="${song.title}">
+        var htmlString=` <div id="${song.id}"  class="list-group-item list-group-item-action d-flex justify-content-between " data-id="${song.id}" data-title="${song.title}">
         <p class="text-truncate">${count1} <a href="">${song.title} </a></p>
         <div  class="btn btn-primary" >chọn</div>
     </div>`;
@@ -81,9 +91,9 @@ function PrintListSong(){
 function PrintList(){
     Playlist.innerHTML='';
     var count=-1;
-    list.forEach(songid => {
+    list.forEach(song => {
         count++;
-        addDiv(songid,count);
+        addDiv(song,count);
     });
 }
 function Changdisabled(id) {
@@ -97,12 +107,12 @@ Playlist.addEventListener('click',function(event){
     if (target.classList.contains('btn')) {
         var BtnId = target.parentNode.dataset.id; // Lấy data-id từ phần tử cha
         // target.classList.add('disabled')
-        console.log("Hello"+BtnId);
+     
         deleteItem(BtnId);
         var divSong= document.getElementById(BtnId);
         
         var btn=divSong.querySelector('.btn.btn-primary');
-        console.log(btn);
+  
         btn.classList.remove('disabled');
     }
 }); 
@@ -119,20 +129,33 @@ listsongs.addEventListener('click',function(event){
     }
 });
 
-
-
-// function clickFile(){
-//         fileInput.click();
-//         fileInput.addEventListener('change',function(){
-//         selectedFile=fileInput.files[0];
+//Send form with listSong()
+function sendFormPlaylist(){
+    if(list.length>0)
+    {   
+        console.log('Bắt đầu test')
+        console.log(playlist_send);
+        playlist_send.value=JSON.stringify(list) ;  
+        console.log(playlist_send.value);
         
-//         alert('Đã chọn tệp' + selectedFile.name);
-//         fileInfoHTML='<p> tên tệp:'+selectedFile.name +'</p>'
-//                       +'<p> kích thước:'+selectedFile.size/1024+'kb' +'</p>';
+        playlistForm.submit();
+    }
+    else alert('Vui lòng chọn bài hát')
+    
+}
 
-//         fileInfoDiv.innerHTML=fileInfoHTML;
-//         });
-// }
+
+
+function clickFile(){
+        fileInput.click();
+        fileInput.addEventListener('change',function(){
+        selectedFile=fileInput.files[0];
+        
+        alert('Đã chọn tệp' + selectedFile.name);
+        var contentDiv=`<p>Da chon ${selectedFile.name}</p>`;
+        divToShow.innerHTML=contentDiv;
+        })
+}
 // function addFile(){
 //     if(selectedFile==null){
 //         alert('Hãy chọn tệp');

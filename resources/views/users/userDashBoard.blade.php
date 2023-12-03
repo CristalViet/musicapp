@@ -59,7 +59,7 @@
 
                     <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
-                        <p class="text-center">2</p>
+                        <p class="text-center">{{auth()->user()->playlists->count()}}</p>
                         <p class="text-center">playlist</p>
                     </div>
                     <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
@@ -83,8 +83,8 @@
 
                     <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
-                        <p class="text-center">2</p>
-                        <p class="text-center">playlist</p>
+                        <p class="text-center">{{auth()->user()->songs->count()}} bài</p>
+                    
                     </div>
                     <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
