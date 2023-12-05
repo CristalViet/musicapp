@@ -61,5 +61,11 @@ class HomeController extends Controller
   
         return view('users.addNewPlaylist',compact('activeTab','listsong'));
     }
-    
+    public function adminView()
+    {   
+        // $activeTab='playlist';
+        // $listsong=song::all();
+        // dd("hello");
+        return view('admin.dashboard');
+    }
 }

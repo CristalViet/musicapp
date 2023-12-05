@@ -28,6 +28,17 @@ class SongController extends Controller
              'playlist'=>$playlist
         ]);
     }
+    public function runPlaylist(String $id){
+        $playlist=playlist::find($id);
+        $songs=DB::table('song_playlists')->join('songs','song_playlists.song_id','=','songs.id')
+        ->join('playlists','song_playlists.playlist_id','=','playlists.id')
+        ->where('song_playlists.playlist_id','=',$id)->select('songs.*')->get();
+    //   dd($songs);   
+        return view('playlists.run_Playlist',[
+             'songs'=>$songs,
+             'playlist'=>$playlist
+        ]);
+    }
 
     public function store(Request $request)
     {   

@@ -21,8 +21,18 @@ use App\Http\Controllers\PlaylistController;
 Route::get('/', function () {
     return view('users.index');
 });
-Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
 
+//song playlist
+Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
+Route::get('/playlists/{playlist}', [SongController::class, 'runPlaylist'])->name('run_playlist');
+
+
+Route::middleware(['admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [HomeController::class, 'adminView'])->name('admin.dashboard');
+        // Thêm các route khác tại đây nếu cần
+    });
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

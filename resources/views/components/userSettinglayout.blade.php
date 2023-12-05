@@ -22,5 +22,5 @@
             </div>
    
     
-
+            <script src="{{asset('js/user.js')}}"></script>
 </x-layout>

@@ -1,5 +1,6 @@
 @php
-    $playlist=[];
+    $playlist=$songs;
+    $assetPath=asset('storage/');
 @endphp
 <x-layout>
     <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 1000px;"></div>        <br>
@@ -8,8 +9,9 @@
                 <h5 class=" text-xl">Trang chủ > Depacito</h5>
                 <div class="player-container">
                     <audio id="song" >
-                        <source id="source" type="audio/mpeg" src="{{asset('storage',$song->song_url)}}">
+                        <source id="source" type="audio/mpeg" src="">
                     </audio>
+                    {{-- https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3 --}}
                     <div class="progress-container">
                         <h4>Despacito</h4>
                         <p class="opacity-75">Muhammederdem</p>
@@ -77,9 +79,10 @@
                     <div  style="height:200px;overflow-y:scroll">
                         <table class="table table-hover " >
                             @foreach($playlist as $key => $item)
+                        
                             <tr class="" style="cursor: pointer">
                                 <td class="d-flex justify-content-between align-items-center">
-                                    <p class="m-0">1. <p onClick="changeSong({{$key}})" style="width:fit-content; color:black"><?php echo $item ?></p> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
+                                    <p class="m-0">1. <p onClick="changeSong({{$key}})" style="width:fit-content; color:black">{{$item->title}}</p> - <a href="google.com" class="d" style="opacity: 50">mamuhaara</a></p>
                                     <i class="fa-solid fa-play text-muted "></i>
                                 </td>
                             </tr>
@@ -122,8 +125,10 @@
             let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
             let src=document.getElementById('source');
             let currentIndex=0;
-            // console.log(playlist[currentIndex])
-            src.setAttribute("src",playlist[currentIndex])
+     
+          
+            src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
+         
             let progress=document.getElementById('progress');
             let song=document.getElementById('song');
             let playicon=document.getElementById('play-icon');
@@ -140,6 +145,7 @@
                     song.play()
                     playicon.classList.add('fa-pause')
                     playicon.classList.remove('fa-play')
+                 
                 }
             }
             if(song.play()){
@@ -156,7 +162,8 @@
             function next(){
                 if(currentIndex+1>=playlist.length)return;
                 currentIndex++;
-                src.setAttribute("src",playlist[currentIndex])
+                src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
+                song.load();
                 song.currentTime = 0;
                 song.play();
                 console.log(playlist[currentIndex]);
@@ -164,23 +171,27 @@
             function prev(){
                 if(currentIndex-1<0)return;
                 currentIndex--;
-                src.setAttribute("src",playlist[currentIndex])
+                src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
+                song.load();
                 song.currentTime = 0;
                 song.play();
                 console.log(playlist[currentIndex]);
             }
             function changeSong(i){
                 currentIndex=i
-                src.setAttribute("src",playlist[currentIndex])
+                src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
+                song.load();
                 song.currentTime = 0;
                 song.play();
                 playicon.classList.remove('fa-play')
                 playicon.classList.add('fa-pause')
-                console.log(playlist[currentIndex]);
+                console.log('Đã chạy')
+                console.log( "{{$assetPath}}/" + playlist[currentIndex].song_url);
             }
             song.addEventListener("ended", function(){
                 currentIndex++;
-                src.setAttribute("src",playlist[currentIndex])
+                src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
+                song.load();
                 song.currentTime = 0;
                 song.play();
                 console.log(playlist[currentIndex]);
