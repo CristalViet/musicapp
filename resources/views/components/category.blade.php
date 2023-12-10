@@ -1,49 +1,46 @@
 <!-- Nested row for non-featured blog posts-->
 @php
-    $categoryName="Mặc định"    
+    $categoryName="PLAYLISTS >"    
 @endphp
-<h2 class="mb-4">{{$categoryName}}</h2>
-<div class="row justify-content-between container">
+<h4 style="cursor: pointer;" class="mb-4 cursor-pointer">{{$categoryName}}</h4>
+
+<div class="d-flex gap-3 flex-wrap justify-content-between ">
                            
-                            <!-- Blog post-->
-                            <div class="card mb-4 col-lg-2 me-1">
-                                <a href="#!"><img class="card-img-top img-thumbnail" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                   
-                              
-                                </div>
-                            </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4 col-lg-2">
-                                <a href="#!"><img class="card-img-top img-thumbnail" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                   
-                              
-                                </div>
-                            </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4 col-lg-2">
-                                <a href="#!"><img class="card-img-top img-thumbnail" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                   
-                              
-                                </div>
-                            </div>
-                            <div class="card mb-4 col-lg-2">
-                                <a href="#!"><img class="card-img-top img-thumbnail" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                   
-                              
-                                </div>
-                            </div>
-                 
-                        
+        <!-- Blog post-->
+        <div class="w-fit py-3 px-3 mb-4 me-1 rounded category-card">
+            <a href="#!"><img style="width:150px; height:150px" class="rounded object-fit-cover" src="https://i.scdn.co/image/ab67706f0000000215a41ffcf6a9fd1ed7f15ccc" alt="..." /></a>
+            <div class="w-100">
+                <div class="small text-muted">January 1, 2023</div>
+                <h2 class=" h5">Post Title</h2>
+                <p style="width:150px" class="category-card-description text-muted">lorem asda sd asdasd sadasd a saf asdadf</p>
+            
+            </div>
+        </div>
+        <div class="w-fit py-3 px-3 mb-4 me-1 rounded category-card">
+            <a href="#!"><img style="width:150px; height:150px" class="rounded object-fit-cover" src="https://i.scdn.co/image/ab67706f0000000215a41ffcf6a9fd1ed7f15ccc" alt="..." /></a>
+            <div class="w-100">
+                <div class="small text-muted">January 1, 2023</div>
+                <h2 class=" h5">Post Title</h2>
+                <p style="width:150px" class="category-card-description text-muted">lorem asda sd asdasd sadasd a saf</p>
+            
+            </div>
+        </div>
+        <div class="w-fit py-3 px-3 mb-4 me-1 rounded category-card">
+            <a href="#!"><img style="width:150px; height:150px" class="rounded object-fit-cover" src="https://i.scdn.co/image/ab67706f0000000215a41ffcf6a9fd1ed7f15ccc" alt="..." /></a>
+            <div class="w-100">
+                <div class="small text-muted">January 1, 2023</div>
+                <h2 class=" h5">Post Title</h2>
+                <p style="width:150px" class="category-card-description text-muted">lorem asda sd asdasd sadasd a saf</p>
+            
+            </div>
+        </div>
+        <div class="w-fit py-3 px-3 mb-4 me-1 rounded category-card">
+            <a href="#!"><img style="width:150px; height:150px" class="rounded object-fit-cover" src="https://i.scdn.co/image/ab67706f0000000215a41ffcf6a9fd1ed7f15ccc" alt="..." /></a>
+            <div class="w-100">
+                <div class="small text-muted">January 1, 2023</div>
+                <h2 class=" h5">Post Title</h2>
+                <p style="width:150px" class="category-card-description text-muted">lorem asda sd asdasd sadasd a saf</p>
+            
+            </div>
+        </div>                   
 </div>

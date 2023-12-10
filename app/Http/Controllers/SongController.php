@@ -68,14 +68,32 @@ class SongController extends Controller
     }
     public function destroy( $songId){
         $song=song::find($songId);
-        $filePath=$song->song_url;
-       
-        if ($filePath && Storage::disk('public')->exists($filePath)) {
-        
-            $song->delete();
-            Storage::disk('public')->delete($filePath);
+        //kiểm tra xem role phải admin ko
+        if(auth()->user()->role==1){
+            if(auth()->user()->id==$song->userid){
+                $filePath=$song->song_url;
+                if ($filePath && Storage::disk('public')->exists($filePath)) {
+            
+                    $song->delete();
+                    Storage::disk('public')->delete($filePath);
+                }
+            }
+            return redirect(route('userSongs'));
+            
         }
-       return redirect(route('userSongs'));
+        else {
+            $filePath=$song->song_url;
+                if ($filePath && Storage::disk('public')->exists($filePath)) {
+            
+                    $song->delete();
+                    Storage::disk('public')->delete($filePath);
+                }
+                    return redirect(route('manageSongs'));
+        }
+      
+        
+        
+   
     }
     public function editForm( $songId){
         $song=song::find($songId);
@@ -103,4 +121,5 @@ class SongController extends Controller
             'playlist' => ["https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1", "https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1", "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3"]
         ]);
     }
+    
 }

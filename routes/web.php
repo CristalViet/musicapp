@@ -1,10 +1,14 @@
 <?php
 
+use App\Models\genre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\PlaylistController;
 
 /*
@@ -21,6 +25,9 @@ use App\Http\Controllers\PlaylistController;
 Route::get('/', function () {
     return view('users.index');
 });
+Route::get('/', function () {
+    return view('users.index');
+});
 
 //song playlist
 Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
@@ -29,11 +36,31 @@ Route::get('/playlists/{playlist}', [SongController::class, 'runPlaylist'])->nam
 
 Route::middleware(['admin'])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('/dashboard', [HomeController::class, 'adminView'])->name('admin.dashboard');
+        Route::get('/dashboard', [adminController::class, 'adminView'])->name('admin.dashboard');
         // Thêm các route khác tại đây nếu cần
+        Route::get('/manage/users', [adminController::class, 'manageUsersView'])->name('admin.manageUsers');
+        Route::delete('/manage/users/{user}', [UserController::class, 'destroy'])->name('destroyUser');
+        Route::get('/manage/users/{user}', [UserController::class, 'editView'])->name('editUser');
+
+        Route::put('/manage/users/{user}', [UserController::class, 'edit'])->name('updateUser');
+
+        // quan li bai hat
+        Route::get('manage/songs',[adminController::class,'manageSongsView'])->name('admin.manageSongs');
+        // Route::put('/manage/users/{user}', [SongController::class, 'edit'])->name('updateUser');
+        // quan li genres
+        Route::get('manage/genres/add',[GenreController::class,'create'])->name('admin.addGenre');
+        Route::post('manage/genres/add',[GenreController::class,'store'])->name('admin.storeGenre');
+        Route::get('manage/genres',[adminController::class,'manageGenresView'])->name('admin.manageGenres');
+   
+        //quan li nghe si
+        Route::get('manage/artists/add',[ArtistController::class,'create'])->name('admin.addArtist');
+        Route::post('manage/artists/add',[ArtistController::class,'store'])->name('admin.storeArtist');
+        Route::get('manage/artists',[ArtistController::class,'index'])->name('admin.manageArtists');
     });
 });
 Auth::routes();
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/show2', [SongController::class, 'show2'])->name('show2');

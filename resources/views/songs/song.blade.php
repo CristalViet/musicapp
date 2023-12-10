@@ -2,7 +2,7 @@
     $playlist=[];
 @endphp
 <x-layout>
-    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 1000px;"></div>        <br>
+    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="container" ></div>        <br>
         <div class="row">
             <div class="col-md-7">
                 <h5 class=" text-xl">Trang chủ > Depacito</h5>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-4" >
-                <div class=" border rounded-3 py-3 px-4 mt-3">
+                {{-- <div class=" border rounded-3 py-3 px-4 mt-3">
                     <h4 class="">Playlist</h4>
                     <hr>
                     <div  style="height:200px;overflow-y:scroll">
@@ -86,7 +86,7 @@
                             @endforeach
                         </table>
                     </div>
-                </div>
+                </div> --}}
                 <div class="p-3">
                     <h4 class="">Similar songs</h4>
                     <br>

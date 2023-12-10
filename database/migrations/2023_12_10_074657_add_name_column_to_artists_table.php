@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
-            $table->id();
+        Schema::table('artists', function (Blueprint $table) {
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('website')->nullable();
-            $table->string('artist_img')->nullable();
-
-       
-            $table->timestamps();
         });
     }
 
@@ -28,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('artists', function (Blueprint $table) {
+            //
+        });
     }
 };

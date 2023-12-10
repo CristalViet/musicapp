@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -55,6 +57,56 @@ class UserController extends Controller
             ->update(['name'=> $formField['name']]);
         
         return redirect(route('settingView'));
+    }   
+    public function destroy($id){
+     
+        // $user=User::find($id);
+        // $user->delete();
+        return redirect()->route('admin.manageUsers');
+    }
+    public function editView($id){
+        
+        $user=User::find($id);
+        // $user->delete();
+   
+        return view('admin.editUser',['user'=>$user]);
+    }
+    public function edit(Request $request,$id){
+
+        if($request->password!=null){
+      
+            $formField=$request->validate([
+                'name'=>'string',
+                'email'=>'email',
+                'gender'=>'integer',
+                'password'=>'min:6',
+                'avatarLink'=>'nullable|string'
+    
+            ]);
+           $password=bcrypt($request->password) ;
+           $formField['password']=$password;
+           
+        }
+    
+        else {
+            $formField=$request->validate([
+                'name'=>'string',
+                'email'=>'email',
+                'gender'=>'integer',
+                
+                'avatarLink'=>'nullable|string'
+    
+            ]);
+        }
+        
+        
+        $user=User::find($id);
+        
+        DB::table('users')
+            ->where('id',$id)
+            ->update($formField);
+        
+        return redirect(route('admin.manageUsers'));
     }   
 }
  

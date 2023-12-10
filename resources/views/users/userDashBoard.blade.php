@@ -57,12 +57,12 @@
                 </div>
                 <div class="d-flex ">
 
-                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
+                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1 border border-gray">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
-                        <p class="text-center">{{auth()->user()->playlists->count()}}</p>
-                        <p class="text-center">playlist</p>
+                        <p class="text-center">{{auth()->user()->playlists->count()}} playlist</p>
+                     
                     </div>
-                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
+                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1 border border-gray">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
                        
                         <p class="text-center">playlist của tôi</p>
@@ -81,16 +81,12 @@
                 </div>
                 <div class="d-flex ">
 
-                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
+                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1 border border-gray">
                         {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
                         <p class="text-center">{{auth()->user()->songs->count()}} bài</p>
                     
                     </div>
-                    <div class=" card-playlist d-flex align-items-center justify-content-center flex-column m-1">
-                        {{-- <img src="https://avatar-ex-swe.nixcdn.com/playlist/2016/09/09/4/c/6/e/1473409265946.jpg" class="card-img-top" alt="..."> --}}
-                       
-                        <p class="text-center">playlist của tôi</p>
-                    </div>
+                  
                 </div>
                 
                 

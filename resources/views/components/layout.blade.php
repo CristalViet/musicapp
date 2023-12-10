@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>FunTune</title>
+        <title class="">FunTune</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -20,16 +20,16 @@
     <body class="pt-5">
         
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark bg-light fixed-top">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex">
-                    <a class="navbar-brand" href="/">FunTune</a>
+                    <a class="navbar-brand text-dark" href="/">FunTune</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#!">About</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" href="#!">Contact</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark active" aria-current="page" href="#">Blog</a></li>
                            
                         </ul>
                      
@@ -41,9 +41,9 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center list-unstyled" >
                         <li class="nav-item me-1">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Find you song" aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Tìm</button>
+                            <div class="input-group bg-white rounded-pill">
+                                <input class="form-control border-0 rounded-pill" type="text" placeholder="Find you song" aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary rounded-circle bg-dark border-0" id="button-search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </li>
                         @if (auth()->check())
@@ -51,8 +51,9 @@
                         {{-- <li class=" nav-item me-1"> <a href="" class="unlink"><span>Xin chào {{auth()->user()->name}}</span> <i class="fa-solid fa-user-tie"></i></a> </li> --}}
                         
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span>Vờ cờ lờ{{auth()->user()->name}}</span> <i class="fa-solid fa-user-tie"></i>
+                            <a class="btn bg-dark btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>Welcome {{auth()->user()->name}}</span> 
+                                <span><i class="fa-solid fa-user-tie"></i></span>
                             </a>
                           
                             <ul class="dropdown-menu">
@@ -63,23 +64,23 @@
                               onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                {{ __('Logout') }}
-                           </a>
+                                </a>
 
-                           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                               @csrf
-                           </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </ul>
                         </div>
                         @else
                        
                         @if (Route::has('login'))
                         <li class="nav-item me-1">
-                            <a class="nav-link" href="{{ route('login') }}"><span>Đăng nhập</span> <i class="fa-solid fa-user-tie"></i></a>
+                            <a class="nav-link text-dark" href="{{ route('login') }}"><span>Đăng nhập</span> <i class="fa-solid fa-user-tie"></i></a>
                         </li>
                         @endif
                         @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"><span>Đăng ký</span> <i class="fa-solid fa-user-tie"></i></a>
+                                    <a class="nav-link text-dark" href="{{ route('register') }}"><span>Đăng ký</span> <i class="fa-solid fa-user-tie"></i></a>
                                 </li>
                             @endif
                         @endif
@@ -88,10 +89,6 @@
                        
                     </ul>
                 </div>
-                <i class="fa-solid fa-user-tie"></i>
-               
-               
-                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 
             </div>
@@ -100,7 +97,7 @@
     
         <!-- Page content-->
 
-        <div class="mt-5" style="margin:100px">
+        <div class="mt-5 container" >
 
             {{$slot}}
         </div>
@@ -121,7 +118,7 @@
         <script src="{{asset('js/scripts.js')}}"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
        
- 
+        <script src="{{asset('js/user.js')}}"></script>
        
     </body>
 </html>

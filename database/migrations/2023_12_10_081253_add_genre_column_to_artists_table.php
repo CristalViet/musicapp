@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('website')->nullable();
-            $table->string('artist_img')->nullable();
-
-       
-            $table->timestamps();
+        Schema::table('artists', function (Blueprint $table) {
+            $table->string('gender')->comment('1:nam 2:nữ');
         });
     }
 
@@ -28,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('artists', function (Blueprint $table) {
+            //
+        });
     }
 };
+

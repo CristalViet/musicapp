@@ -20,75 +20,36 @@
       </li>
            {{-- Quản lí người dùng --}}
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('admin.manageUsers')}}" class="nav-link">
           <i class="nav-icon fas fa-chart-pie"></i>
           <p>
             Quản lí người dùng
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" style="display: none;">
-          <li class="nav-item">
-            <a href="pages/charts/chartjs.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Qu</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Flot</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Inline</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/uplot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>uPlot</p>
-            </a>
-          </li>
-        </ul>
+        
       </li>
       {{-- Quản lí bài hát --}}
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('admin.manageSongs')}}" class="nav-link">
           <i class="nav-icon fas fa-chart-pie"></i>
           <p>
             Quản lí bài hát
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" style="display: none;">
-          <li class="nav-item">
-            <a href="pages/charts/chartjs.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Qu</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Flot</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Inline</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/uplot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>uPlot</p>
-            </a>
-          </li>
-        </ul>
+      
+      </li>
+      {{-- quản lí genre --}}
+      <li class="nav-item">
+        <a href="{{route('admin.manageGenres')}}" class="nav-link">
+          <i class="nav-icon fas fa-chart-pie"></i>
+          <p>
+           Quản lý thể loại
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+      
       </li>
       {{-- Quản lí playlist --}}
       <li class="nav-item">
@@ -99,68 +60,18 @@
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" style="display: none;">
-          <li class="nav-item">
-            <a href="pages/charts/chartjs.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Qu</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Flot</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Inline</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/uplot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>uPlot</p>
-            </a>
-          </li>
-        </ul>
+        
       </li>  
       {{-- Quản lí nghệ sĩ --}}
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('admin.manageArtists')}}" class="nav-link">
           <i class="nav-icon fas fa-chart-pie"></i>
           <p>
             Quản lí nghệ sĩ
             <i class="right fas fa-angle-left"></i>
           </p>
         </a>
-        <ul class="nav nav-treeview" style="display: none;">
-          <li class="nav-item">
-            <a href="pages/charts/chartjs.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Qu</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/flot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Flot</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/inline.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Inline</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/charts/uplot.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>uPlot</p>
-            </a>
-          </li>
-        </ul>
+       
       </li> 
       
       
