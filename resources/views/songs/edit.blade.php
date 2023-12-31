@@ -12,6 +12,7 @@
                         <label for="">Mô tả</label>
                         <input type="text" name="description" class="form-control" value="{{$song->description}}">
                 </div>
+                <div class="mt-3"></div>
                 <input type="file" name="music_file" id="inputFile" class="d-none" accept=".mp3">
                 <div class="btn btn-secondary" onclick="clickFile()">Thêm tệp</div>
                 <div class="btn btn-secondary" onclick="addFile()">Xác nhân tải lên</div>

@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Quản lý thể loại</h1>
+            <h1 class="m-0">Quản lý nghệ sĩ</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -32,9 +32,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>2<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$artists->count()}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Số lượng thể loại</p>
+                <p>Số lượng nghệ sĩ</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -45,17 +45,7 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>Số lượng thể loại</h3>
-
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+           
           </div>
           <!-- ./col -->
       
@@ -98,9 +88,11 @@
         @endphp
             <tr>
                 <td>{{$count}}</td>
-                <td>{{$artist->title}}</td>
              
-           
+                <td><img src="{{asset('storage/'.$artist->art_img)}}" alt=""></td>
+                <td>{{$artist->name}}</td>
+                <td>okdesu</td>
+                <td><p class="overflow-hidden">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit perferendis voluptate qui,</p> </td>
        
               
                 <td class="d-flex">

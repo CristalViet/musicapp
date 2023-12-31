@@ -60,9 +60,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>Số lượng thể loại</h3>
+                <h3>2</h3>
 
-                <p>User Registrations</p>
+                <p>Số lượng thể loại</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -77,7 +77,7 @@
               <div class="inner">
                 <h3>65</h3>
 
-                <p>Unique Visitors</p>
+                <p>Số khách truy cập trang web</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

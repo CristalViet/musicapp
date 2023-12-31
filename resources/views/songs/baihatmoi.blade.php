@@ -25,7 +25,8 @@
                         <img class="rounded-circle" style="height: 60px;width:60px;object-fit:cover" alt="" src="https://avatar-nct.nixcdn.com/avatar/2020/06/04/d/9/e/e/1591240258899.jpg">
                         <div class="w-fit d-flex flex-column justify-content-center align-items-center">
                             <h6 class="m-0">Tạo bởi</h6>
-                            <p class="m-0">user123</p>
+                    
+                            <p class="m-0"></p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\song;
 use App\Models\User;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -108,5 +109,30 @@ class UserController extends Controller
         
         return redirect(route('admin.manageUsers'));
     }   
+    public function addFavouriteSong( Request $request,$id){
+        
+        $user=Auth()->user();
+        $song=song::find($id);
+        // Kiểm tra xem người dùng đã like bài hát chưa
+        if (!DB::table('likes')->where('user_id', $user->id)->where('song_id', $id)->exists()) {
+            // Nếu chưa like thì thêm dòng mới vào bảng likes
+            DB::table('likes')->insert([
+                'user_id' => $user->id,
+                'song_id' => $song->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            
+        }
+   
+        else {
+          
+            $existingLike=DB::table('likes')->where('user_id', $user->id)->where('song_id', $id)->first();
+  
+            DB::table('likes')->where('id', $existingLike->id)->delete();
+            return response()->json(['message'=>'hủy yêu thích']);
+        }
+        return response()->json(['message'=>'yêu thích']);
+    }
 }
  

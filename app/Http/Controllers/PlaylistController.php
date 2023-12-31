@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\song;
 use App\Models\playlist;
-use App\Models\song_playlist;
 use Illuminate\Http\Request;
 
+use App\Models\song_playlist;
 use function Laravel\Prompts\table;
 
 class PlaylistController extends Controller
@@ -46,7 +47,7 @@ class PlaylistController extends Controller
         ]);
         
         $playlist=new playlist();
-     
+        $playlist_img='';
         if(request()->hasFile('playlist_img')){
             $playlist_img= $request->file('playlist_img')->store('playlist_img','public');
         }
@@ -84,9 +85,10 @@ class PlaylistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit()
+    {   
+        $listsong=song::all();
+        return view('users.editPlaylist',['listsong'=>$listsong]);
     }
 
     /**

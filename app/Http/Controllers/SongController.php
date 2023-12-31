@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\playlist;
+
 use App\Models\song;
+use App\Models\User;
+use App\Models\playlist;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,8 +15,12 @@ use Illuminate\Support\Facades\Storage;
 class SongController extends Controller
 {
     public function index($id){
+        $song=song::find($id);
+        $author=User::find($song->user_id)->name;
+ 
         return view('songs.song',[
-             'song'=>song::find($id)
+             'song'=>$song,
+             'author'=>$author
         ]);
     }
 

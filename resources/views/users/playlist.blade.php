@@ -2,7 +2,7 @@
     $count=0;
 @endphp
 <x-userSettingLayout : activeTab="playlist">
-    <div class="row">
+    <div class="row" >
         <div class="fs-1">Playlist của bạn</div>
         <div class="d-flex">
             <input type="checkbox" name="" id="">
@@ -23,10 +23,13 @@
                 <td>1</td>
                 <td>Vì ngày xưa</td>
                 <td>
-                    <button href="Sửa" class="unlink ms-1">
-                        <i
-                        class="fa-solid fa-pen-to-square"></i> Sửa
-                    </button>
+                    <a href="{{route('editPLaylistView')}}">
+                        <button  class="unlink ms-1">
+                            <i
+                            class="fa-solid fa-pen-to-square"></i> Sửa
+                        </button>
+                    </a>
+                   
 
                     
                     {{-- <form id="deleteSong" action="" method="post">
@@ -57,7 +60,7 @@
                      
                      
                         <div >
-                            <button href="" class=" ms-1 btn btn-primary ">
+                            <button href="{{route('editPLaylistView')}}" class=" ms-1 btn btn-primary ">
                                 <i class="fa-solid fa-pen-to-square"></i> Sửa
                             </button>
                         </div>
@@ -112,5 +115,6 @@
             </tr>
             @endforeach --}}
         </table>
+        
     </div>
 </x-userSettingLayout>

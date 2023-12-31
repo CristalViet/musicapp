@@ -1,8 +1,9 @@
 <!-- Nested row for non-featured blog posts-->
 @php
-    $category=$categoryName;    
+ 
+    $baihatmois=$songs
 @endphp
-<h4 style="cursor: pointer;" class="mb-4 cursor-pointer">{{$category}} </h4>
+<h4 style="cursor: pointer;" class="mb-4 cursor-pointer">Kết quả </h4>
 
 <div class="d-flex gap-3 flex-wrap  ">
                            

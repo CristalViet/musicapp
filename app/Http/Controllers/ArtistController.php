@@ -32,6 +32,7 @@ class ArtistController extends Controller
     {
         $formField= $request->validate([
             'name'=>'required|string|max:255',
+            'gender'=>'string',
             'description'=>'nullable|string',
             'website'=>'nullable|string',
             'artist_img'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -41,17 +42,18 @@ class ArtistController extends Controller
         // dd($data['gender']);
         $artist_img='';
     
-        if($request['artist_img']!=null){
-            $artist_img=$formField['artist_img']->store('avatars','public');
+        if($request->hasFile('artist_img')){
+            $artist_img=$request->file('artist_img')->store('avatars','public');
         }
-
+        dd($artist_img);
         $artist= artist::create([
             'name' => $formField['name'],
-            'description' => $formField['email'],
+            'description' => $formField['description'],
+            'gender'=>$formField['gender'],
             'website' => $formField['website'],
             'artist_img' =>$artist_img
         ]);
-       return redirect()->route('userSongs');
+       return redirect()->route('admin.manageArtists');
     }
 
     /**

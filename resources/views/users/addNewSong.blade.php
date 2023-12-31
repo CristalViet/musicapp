@@ -1,6 +1,6 @@
 
 <x-userSettingLayout : activeTab="Songs">
-        <h2>Tại nhạc của bạn lên FunTune</h2>
+        <h2>Tải nhạc của bạn lên FunTune</h2>
         <form id="uploadForm" action="{{route('storeSong')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -12,6 +12,20 @@
                         <label for="">Mô tả</label>
                         <input type="text" name="description" class="form-control">
                 </div>
+                <div class="mt-3">
+                        <label for="">Ca sĩ</label>
+                        <input type="search" name="" class="form-control " id="">
+                </div>
+                <label for=""></label>
+                <div>
+                        <label for="">Thể loại</label>
+                        <select name="genre" id="" class="form-select mt-3">
+                                <option value="">Nhạc trữ tình</option>
+                                <option value="">Nhạc cách mạng</option>
+                                <option value="">Nhạc hoài cổ</option>
+                        </select>
+                </div>
+                <div class="mb-3"></div>
                 <input type="file" name="music_file" id="inputFile" class="d-none">
                 <div class="btn btn-secondary" onclick="clickFile()">Thêm tệp</div>
                 <div class="btn btn-secondary" onclick="addFile()">Xác nhân tải lên</div>
@@ -21,7 +35,7 @@
                 <div id="fileInfo"></div>
                 <div id="fileInfo2"></div>
         </form>
-
+       
        
 
 </x-userSettingLayout>

@@ -2,6 +2,8 @@
     $playlist=[];
 @endphp
 <x-layout>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="container" ></div>        <br>
         <div class="row">
             <div class="col-md-7">
@@ -28,12 +30,41 @@
                         <img class="rounded-circle" style="height: 60px;width:60px;object-fit:cover" alt="" src="https://avatar-nct.nixcdn.com/avatar/2020/06/04/d/9/e/e/1591240258899.jpg">
                         <div class="w-fit d-flex flex-column justify-content-center align-items-center">
                             <h6 class="m-0">Tạo bởi</h6>
-                            <p class="m-0">user123</p>
+                            <p class="m-0">{{$author}}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
-                        <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> Thêm vào playlist</p>
-                        <p class="m-0"><i class="fa-solid fa-download"></i> Tải xuống</p>
+                    
+                       
+                            
+                                @if (auth()->user())
+                                @php
+                                
+                                    $existingLike=DB::table('likes')->where('user_id',auth()->user()->id)->where('song_id',$song->id)->get();
+
+                    
+                                @endphp
+                                    <a href="" class="unlink">
+                                        <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> Thêm vào playlist</p>   
+                                    </a>
+                                @if (count($existingLike)==0)
+                                <a href="" id="yeuthich-btn" class="unlink" data-song-id="{{$song->id}}">
+                                <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> <span>Yêu thích</span> </p>     
+                                @else
+                                <p class="m-0"><i class="fa-solid fa-check border p-1 rounded-circle"></i> <span>Đã Yêu thích</span></p>  
+                                </a>   
+                                @endif
+                                @else
+                                    
+                                @endif
+                               
+                                
+                    
+                  
+                        
+                        
+                        <a href="{{asset('storage/' . $song->song_url)}}" download="" class="unlink"><p class="m-0"><i class="fa-solid fa-download"></i> Tải xuống</p></a>
+
                     </div>
                 </div>
                 <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
@@ -119,14 +150,15 @@
             </div> 
         </div>
         <script>
-            let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
+            // let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
             let src=document.getElementById('source');
             let currentIndex=0;
             // console.log(playlist[currentIndex])
-            src.setAttribute("src",playlist[currentIndex])
+            // src.setAttribute("src",playlist[currentIndex])
             let progress=document.getElementById('progress');
             let song=document.getElementById('song');
             let playicon=document.getElementById('play-icon');
+         
             song.onloadedmetadata=function(){
                 progress.max=song.duration
                 progress.value=song.currentTime
@@ -153,31 +185,31 @@
                 playicon.classList.add('fa-pause')
                 playicon.classList.remove('fa-play')
             }
-            function next(){
-                if(currentIndex+1>=playlist.length)return;
-                currentIndex++;
-                src.setAttribute("src",playlist[currentIndex])
-                song.currentTime = 0;
-                song.play();
-                console.log(playlist[currentIndex]);
-            }
-            function prev(){
-                if(currentIndex-1<0)return;
-                currentIndex--;
-                src.setAttribute("src",playlist[currentIndex])
-                song.currentTime = 0;
-                song.play();
-                console.log(playlist[currentIndex]);
-            }
-            function changeSong(i){
-                currentIndex=i
-                src.setAttribute("src",playlist[currentIndex])
-                song.currentTime = 0;
-                song.play();
-                playicon.classList.remove('fa-play')
-                playicon.classList.add('fa-pause')
-                console.log(playlist[currentIndex]);
-            }
+            // function next(){
+            //     if(currentIndex+1>=playlist.length)return;
+            //     currentIndex++;
+            //     src.setAttribute("src",playlist[currentIndex])
+            //     song.currentTime = 0;
+            //     song.play();
+            //     console.log(playlist[currentIndex]);
+            // }
+            // function prev(){
+            //     if(currentIndex-1<0)return;
+            //     currentIndex--;
+            //     src.setAttribute("src",playlist[currentIndex])
+            //     song.currentTime = 0;
+            //     song.play();
+            //     console.log(playlist[currentIndex]);
+            // }
+            // function changeSong(i){
+            //     currentIndex=i
+            //     src.setAttribute("src",playlist[currentIndex])
+            //     song.currentTime = 0;
+            //     song.play();
+            //     playicon.classList.remove('fa-play')
+            //     playicon.classList.add('fa-pause')
+            //     console.log(playlist[currentIndex]);
+            // }
             song.addEventListener("ended", function(){
                 currentIndex++;
                 src.setAttribute("src",playlist[currentIndex])
@@ -190,5 +222,59 @@
                     playicon.classList.remove('fa-play')
                 }
             });
-        </script>
+    </script>
+
+        
 </x-layout>
+
+<script>
+
+
+
+
+    $(document).ready(function () {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        // Bắt sự kiện khi form được submit
+        $('#yeuthich-btn').click(function (event) {
+            // Ngăn chặn hành vi mặc định của form
+            event.preventDefault();
+            console.log("Click toi day");
+            // Lấy dữ liệu từ form
+            var formData = $(this).serialize();
+            var songId=$(this).data('song-id');
+            var yeuthichURL='/yeuthich/'+ songId;
+            console.log("Da click"+yeuthichURL);
+            var self = $(this);
+            // Gửi request AJAX
+       
+
+            $.ajax({
+                type: 'POST', // hoặc 'GET' tùy thuộc vào yêu cầu của bạn
+                url: yeuthichURL, // Đặt đường dẫn của máy chủ của bạn ở đây
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function (response) {
+                    console.log(response.message);
+                    
+                    if(response.message  == 'yêu thích'){
+                        console.log('ko desu');
+                        self.find('span').text('Yêu thích');
+                        self.find('i').removeClass('fa-check').addClass('fa-plus');
+              
+                    }
+                    else {
+                        console.log('Ok desu');
+                        self.find('span').text('Đã Yêu thích');
+                        self.find('i').removeClass('fa-plus').addClass('fa-check');
+              
+                    }  
+                },  
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>

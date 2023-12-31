@@ -1,6 +1,6 @@
 
 <x-userSettingLayout : activeTab="PLaylist">
-    <h2>Tạo Playlist của bạn lên FunTune</h2>
+    <h2>Edit Playlist của bạn trên FunTune</h2>
         
             <form action="{{route('storePlaylist')}}" method="POST" id="formPlaylist" enctype="multipart/form-data">
                 @csrf
@@ -48,7 +48,6 @@
                             </button>
                           </div> --}}
                         
-                     
                         <div id="listsongs" class="overflow-auto" style="height: 200px" data-listsong="{{$listsong}}">
                             
                             {{-- @for ($i = 0; $i < $count; $i++)
@@ -78,10 +77,10 @@
                 
             
             </form>
-      
-                <div class="btn btn-secondary "  onclick="sendFormPlaylist()">Tạo</div>
+
+                <div class="btn btn-secondary "  onclick="sendFormPlaylist()">Lưu</div>
                         
-            <div class="btn btn-secondary" onclick="">Xóa</div>
+       
                         
             <div class="btn btn-secondary" onclick="">Trở lại</div>
 
@@ -89,4 +88,3 @@
    
 
 </x-userSettingLayout>
-<script src="{{asset('js/user.js')}}"></script>

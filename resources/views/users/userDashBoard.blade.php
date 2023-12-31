@@ -22,24 +22,7 @@
                 <p>Trạng thái</p>
             </div>
             
-            <div class="mt-1 border border-gray p-1">
-                <div class="txtInfor d-flex justify-content-between pt-1">
-                    <div class="float-left flex pt-1">Tài khoản</div>
-                    <div class="btn btn-primary" id=editBtn onclick="">Chỉnh sửa</div>
-                    
-    
-                </div>
-                <p>Họ và tên {{auth()->user()->name}}</p>
-                <p>Email {{auth()->user()->email}}</p>
-                <p>Giới tính :
-                    @if (auth()->user()->gender ==1)
-                        nam
-                    @else
-                       nữ
-                    @endif
-                </p>
-                <p>Trạng thái</p>
-            </div>
+            
             
 
         </div>
