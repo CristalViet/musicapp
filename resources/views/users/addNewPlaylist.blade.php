@@ -48,7 +48,8 @@
                             </button>
                           </div> --}}
                         
-                        <div id="listsongs" class="overflow-auto" style="height: 200px" data-listsong={{$listsong}}>
+                     
+                        <div id="listsongs" class="overflow-auto" style="height: 200px" data-listsong="{{$listsong}}">
                             
                             {{-- @for ($i = 0; $i < $count; $i++)
                             <div  class="list-group-item list-group-item-action d-flex justify-content-between " data-id="{{$i}}">
@@ -77,14 +78,15 @@
                 
             
             </form>
-            <div class="row d-flex">
+      
                 <div class="btn btn-secondary "  onclick="sendFormPlaylist()">Tạo</div>
                         
             <div class="btn btn-secondary" onclick="">Xóa</div>
                         
             <div class="btn btn-secondary" onclick="">Trở lại</div>
 
-            </div>
+      
    
 
 </x-userSettingLayout>
+<script src="{{asset('js/user.js')}}"></script>

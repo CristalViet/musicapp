@@ -12,29 +12,14 @@
             </a>
             
         </div>
-        
+        <div class="pt-2"></div>    
         <div class="divider"></div>
         {{-- List song --}}
         <table >
             <th>STT</th>
             <th>Tên bài hát</th>
             <th>Chức năng</th>
-            <tr>
-                <td>1</td>
-                <td>Vì ngày xưa</td>
-                <td>
-                    <a href="Sửa" class="unlink ms-1">
-                        <i
-                        class="fa-solid fa-pen-to-square"></i> Sửa
-                    </a>
-
-                    <a href="Xóa" class="unlink ms-1">
-                        <i
-                        class="fa-solid fa-pen-to-square"></i> Xóa
-                    </a>
-                </td>
-               
-            </tr>
+            
             @foreach ($songs as $song)
             @php
                 $count++;

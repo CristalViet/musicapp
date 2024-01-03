@@ -14,9 +14,10 @@
           <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
             
             <form action="{{route('update-avatar')}}" enctype="multipart/form-data" method="POST">
+                @method('PUT')
                 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                @method('PUT')
+              
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                       

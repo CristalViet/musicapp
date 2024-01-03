@@ -4,6 +4,7 @@
     var Playlist=document.getElementById('Playlist');
     var listsongs=document.getElementById('listsongs');
     var listSongToAdd=JSON.parse(listsongs.dataset.listsong); 
+
     var selectedFile;
     var fileInput=document.getElementById('inputFile');
     var playlist_send=document.getElementById('playlist_send');
@@ -78,6 +79,7 @@ function addDiv(song,count){
 }
 function PrintListSong(){
     var count1=0;
+    listsongs.innerHTML='';
     listSongToAdd.forEach(song => {
         var htmlString=` <div id="${song.id}"  class="list-group-item list-group-item-action d-flex justify-content-between " data-id="${song.id}" data-title="${song.title}">
         <p class="text-truncate">${count1} <a href="">${song.title} </a></p>
@@ -153,7 +155,8 @@ function clickFile(){
         
         alert('Đã chọn tệp' + selectedFile.name);
         var contentDiv=`<p>Da chon ${selectedFile.name}</p>`;
-        divToShow.innerHTML=contentDiv;
+        console.log(contentDiv);
+        // divToShow.innerHTML=contentDiv;
         })
 }
 // function addFile(){

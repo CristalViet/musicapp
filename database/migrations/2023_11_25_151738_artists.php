@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('website')->nullable();
             $table->string('artist_img')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+
        
             $table->timestamps();
         });
