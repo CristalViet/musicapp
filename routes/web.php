@@ -18,21 +18,19 @@ use App\Http\Controllers\PlaylistController;
 |
 */
 
-Route::get('/', function () {
-    return view('users.index');
-});
-Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
+Route::get('/', [SongController::class, 'list']);
+Route::get('/songs/{song}', [SongController::class, 'index'])->name('song');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/show2', [SongController::class, 'show2'])->name('show2');
-Route::group(['prefix'=>'user'], function(){
+Route::group(['prefix' => 'user'], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashBoardview'])->name('userDashBoard');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
     // Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('user');
-    
-    
+
+
     //Playlist 
     Route::get('/userplaylist', [PlaylistController::class, 'index'])->name('userPlaylists');
     Route::get('/addPlaylist', [HomeController::class, 'userAddPlaylistsView'])->name('addPlaylist');
@@ -47,14 +45,8 @@ Route::group(['prefix'=>'user'], function(){
     Route::put('/change', [UserController::class, 'update'])->name('changeInforUser');
     Route::get('/edit/{song}', [SongController::class, 'editForm'])->name('showInfoSong');
     Route::put('/edit/{song}', [SongController::class, 'update'])->name('updateSong');
-    
-Route::PUT('/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
+
+    Route::PUT('/setting', [UserController::class, 'updateAvatar'])->name('update-avatar');
 });
 
 // Route::post('/user/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
-
-
-
-
-
-

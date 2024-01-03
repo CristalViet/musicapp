@@ -1,15 +1,11 @@
 <x-layout>
     <x-pageContent>
          <x-left-layout>
-            <x-category>
-
-            </x-category>
-            <x-category>
-
-            </x-category>
-            <x-category>
-
-            </x-category>
+            <x-category/>
+            <x-category/>
+            <x-category/>
+            <x-songlist/>
+            <x-category/>
          </x-left-layout>
         <x-right-layout >
             

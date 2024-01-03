@@ -2,7 +2,7 @@
     $playlist=[];
 @endphp
 <x-layout>
-    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 1000px;"></div>        <br>
+    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" ></div>        <br>
         <div class="row">
             <div class="col-md-7">
                 <h5 class=" text-xl">Trang chủ > Depacito</h5>
