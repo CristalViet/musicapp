@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\genre;
+use App\Models\playlist;
 use App\Models\song;
 use Illuminate\Http\Request;
 
@@ -24,8 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $baihatmois=song::latest('created_at')->take(2)->get();
-        return view('users.index',['baihatmois'=>$baihatmois]);
+        $baihatmois=song::latest('created_at')->take(4)->get();
+        $playlistmois=playlist::latest('created_at')->take(4)->get();
+        return view('users.index',['baihatmois'=>$baihatmois,'playlistmois'=>$playlistmois]);
     }
     public function dashBoardView( )
     {   
@@ -47,13 +50,17 @@ class HomeController extends Controller
     public function userSongsView()
     {   
         $songs=auth()->user()->songs;
+        
+        $genres=genre::all();
+        
         $activeTab='songs';
-        return view('users.songs',compact('activeTab','songs'));
+        return view('users.songs',compact('activeTab','songs','genres'));
     }
     public function userAddSongsView()
     {   
         $activeTab='songs';
-        return view('users.addNewSong',compact('activeTab'));
+        $genres=genre::all();
+        return view('users.addNewSong',compact('activeTab','genres'));
     }
     public function userAddPlaylistsView()
     {   

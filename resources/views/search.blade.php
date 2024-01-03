@@ -11,4 +11,5 @@
             
         </x-right-layout>
     </x-pageContent>
+    <div style="height: 200px"></div>    
 </x-layout>

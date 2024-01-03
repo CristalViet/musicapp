@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title class="">FunTune</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}" />
@@ -26,10 +28,9 @@
                     <a class="navbar-brand text-dark" href="/">FunTune</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark" href="#!">About</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark" href="#!">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark active" aria-current="page" href="#">Blog</a></li>
+
+                      
+
                            
                         </ul>
                      
@@ -60,7 +61,7 @@
                           
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item change" href ="{{route('userDashBoard')}}">Trang cá nhân</a></li>
-                              <li><a class="dropdown-item" href="#">Tài khoản</a></li>
+                              
                               {{-- <li><a class="dropdown-item" href="#">Đăng xuất</a></li> --}}
                               <a class="dropdown-item" href="{{ route('logout') }}"
                               onclick="event.preventDefault();
@@ -113,7 +114,7 @@
        
         <!-- Footer-->
         <footer class="py-5 bg-dark ">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; FunTune 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

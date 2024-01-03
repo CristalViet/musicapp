@@ -3,10 +3,10 @@
     $assetPath=asset('storage/');
 @endphp
 <x-layout>
-    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 1000px;"></div>        <br>
+    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" style="height: 10px;"></div>        <br>
         <div class="row">
             <div class="col-md-7">
-                <h5 class=" text-xl">Trang chủ > Depacito</h5>
+                <h5 class=" text-xl">Trang chủ > <span id="namesong3"></span> </h5>
                 <div class="player-container">
                     <audio id="song" >
                         <source id="source" type="audio/mpeg" src="">
@@ -15,7 +15,7 @@
                     <div class="progress-container">
                         <h4 id="namesong">Despacito</h4>
                         <p id="tacgia" class="opacity-75">Muhammederdem</p>
-                        <input id="progress" type="range" value=0>
+                        <input id="progress" type="range">
                     </div>
                     <img class="player-img" src="https://alikinvv.github.io/minimal-player/build/img/album.jpg" alt="">
                     <div class="controls">
@@ -25,27 +25,15 @@
                     </div>
                 </div>
                 
-                <div class="d-flex justify-content-between align-items-center  mt-3 px-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <img class="rounded-circle" style="height: 60px;width:60px;object-fit:cover" alt="" src="https://avatar-nct.nixcdn.com/avatar/2020/06/04/d/9/e/e/1591240258899.jpg">
-                        <div class="w-fit d-flex flex-column justify-content-center align-items-center">
-                            <h6 class="m-0">Tạo bởi</h6>
-                            <p class="m-0">user123</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center gap-3">
-                        <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> Thêm vào playlist</p>
-                        <p class="m-0"><i class="fa-solid fa-download"></i> Tải xuống</p>
-                    </div>
-                </div>
-                <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
+                
+                {{-- <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
                     <h6><i class="fa-solid fa-tag"></i> Tags:</h6>
                     <div class="d-flex flex-wrap gap-3">
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                     </div>
-                </div>
+                </div> --}}
                 <div class=" border rounded-3 py-3 px-4 mt-3">
                     <h4 class="">Thong tin:</h4>
                     <hr>
@@ -54,12 +42,9 @@
                    
                     <div class="d-flex align-items-center gap-3 mb-1">
                         <h6 class="m-0">Tên bài hát:</h6>
-                        <h4 id="namesong">Despacito</h4>
+                        <h4 id="namesong2"></h4>
                     </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-1"></div>
@@ -78,7 +63,7 @@
                             @endphp
                             <tr class="" style="cursor: pointer">
                                 <td class="d-flex justify-content-between  text-center">
-                                    <p class="m-0 text-center">{{$count}} <p onClick="changeSong({{$key}})" style="width:fit-content; color:black">{{$item->title}}</p> <a href="google.com" class="unlink" style="opacity: 50">Sơn tùng</a></p>
+                                    <p class="m-0 text-center">{{$count}} <p onClick="changeSong({{$key}})" style="width:fit-content; color:black">{{$item->title}}</p> <a href="google.com" class="unlink" style="opacity: 50"></a></p>
                                     <i class="fa-solid fa-play text-muted "></i>
                                 </td>
                             </tr>
@@ -86,7 +71,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="p-3">
+                {{-- <div class="p-3">
                     <h4 class="">Similar songs</h4>
                     <br>
                     <div class="d-flex gap-3 align-items-center mb-4">
@@ -114,26 +99,29 @@
                         </div>
                     </div>
                     
-                </div>
+                </div> --}}
             </div> 
+            <div style="height: 200px"></div>
         </div>
         <script>
             let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
             let src=document.getElementById('source');
             var currentIndex=0;
             let namesong=document.getElementById('namesong');
+            let namesong2=document.getElementById('namesong2');
+            
+            let namesong3=document.getElementById('namesong3');
             let currentSongTime = 0;
             src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
             namesong.innerText=playlist[currentIndex].title
             let progress=document.getElementById('progress');
             let song=document.getElementById('song');
             let playicon=document.getElementById('play-icon');
-     
+            let author=document.getElementById('author');
+            let progressChanged=false;
             song.onloadedmetadata=function(){
                 progress.max=song.duration
-                progress.value=song.currentTime
-
-                
+                progress.value=currentSongTime
             }
             function playPause(){
                 if(playicon.classList.contains("fa-pause")){
@@ -147,7 +135,9 @@
                  
                 }
             }
-            // if(song.play()){
+            
+            
+            // if(song.ongplaying()){
             //     setInterval(()=>{
        
             //         progress.value=song.currentTime;
@@ -157,38 +147,68 @@
            
           
             // }
-            song.onplaying = function() {
-                setInterval(() => {
-                    progress.value = song.currentTime;
+            // song.onplaying = function() {
+            //     song.addEventListener('timeupdate', function() {
+                 
+            //             if(!progressChanged)
+            //             {
+            //                 progress.value = song.currentTime;
+            //                 // song.currentTime=progress.value;
+
+            //             }
+            //                 // Chỉ cập nhật giá trị progress nếu người dùng chưa tương tác với nó
+      
+             
                    
-                }, 500);
-            };
-        //             song.ontimeup    date = function() {
-        //     progress.value = song.currentTime;
-        // };
-            progress.oninput=function(){
-            
-                song.pause();
+                     
+    
+            //     });
+            // };
 
-                let progressTemp=progress.value;
-              
-                currentSongTime=progressTemp;
-       
-                song.currentTime=currentSongTime;
-                console.log(song.currentTime    );
-                song.play();
+            song.ontimeupdate = function () {
+                if (song.duration) {
+                    const progressPercent = Math.floor(
+                    (song.currentTime / song.duration) * 100
+                    );
+                    progress.value = progressPercent;
+                }
+                };
 
-
-                playicon.classList.add('fa-pause')
-                playicon.classList.remove('fa-play')
+    // Xử lý khi tua song
+    // Handling when seek
                 
-            }
+        progress.onchange = function(e) {
+            // progressChanged=true;
+            const seekTime=song.duration/100*e.target.value;
+            song.currentTime=seekTime;
+            console.log(currentSongTime);
+         
+
+          
+
+        //     // Kiểm tra xem người dùng đã thực hiện thay đổi giá trị progress hay chưa
+
+        //         // Nếu có thay đổi, thì mới cập nhật giá trị currentTime
+            
+            
+
+     
+
+            playicon.classList.add('fa-pause');
+            playicon.classList.remove('fa-play');
+            progressChanged=false;
+      
+        //     progressChanged=false;
+
+        };
        
             function next(){
                 if(currentIndex+1>=playlist.length)return;
                 currentIndex++;
                 src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
                 namesong.innerText=playlist[currentIndex].title
+                namesong2.innerText=playlist[currentIndex].title
+                namesong3.innerText=playlist[currentIndex].title
                 song.load();
      
                 song.currentTime = 0;
@@ -201,8 +221,10 @@
                 currentIndex--;
                 src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
                 namesong.innerText=playlist[currentIndex].title
+                namesong2.innerText=playlist[currentIndex].title
+                namesong3.innerText=playlist[currentIndex].title
                 song.load();
-              
+                
                 song.play();
                 console.log(playlist[currentIndex]);
    
@@ -211,6 +233,8 @@
                 currentIndex=i
                 src.setAttribute("src","{{$assetPath}}/" + playlist[currentIndex].song_url)
                 namesong.innerText=playlist[currentIndex].title
+                namesong2.innerText=playlist[currentIndex].title
+                namesong3.innerText=playlist[currentIndex].title
                 song.load();
                 song.currentTime = 0;
 
@@ -233,19 +257,7 @@
                     playicon.classList.remove('fa-play')
                 }
             });
-            // progress.onchange=function(){
-            //     console.log(currentSongTime);
-               
-            //     setTimeout(() => {
-            //         song.currentTime=currentSongTime;  
-            //     }, 0);
-            // };
-            // progress.addEventListener("change", function() {
-            //     console.log('Giá trị thực tế: ' + progress.value);
-            //     song.currentTime = progress.value;
-            //     console.log('Giá trị thời gian hiện tại của bài hát: ' + song.currentTime);
-            //     playicon.classList.add('fa-pause');
-            //     playicon.classList.remove('fa-play');
-            // });
+            
+   
         </script>
 </x-layout>

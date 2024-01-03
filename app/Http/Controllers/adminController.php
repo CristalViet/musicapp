@@ -54,6 +54,10 @@ class adminController extends Controller
 
         ]);
     }
+    public function manageAddSongsView(){
+        $genres=genre::all();
+        return view('admin.addSong',['genres'=>$genres]);
+    }
     public function manageGenresView()
     {   
         // $activeTab='playlist';

@@ -7,7 +7,7 @@
     <div class=" mb-4">
         
     <div class=" fs-4 text-primary">Bảng Xếp Hạng</div>
-       <ul class="list-unstyled">
+        <ul class="list-unstyled">
             {{-- record bài hát --}}
             <li class="d-flex gap-2 mb-2 p-2 rank-card">
                 <div class="">
@@ -22,29 +22,32 @@
                 </div>
                 <div class="">
                     <div class="fw-semibold">
-                        Tên bài hát
+                        <a href="songs/4" class="unlink">TestX</a>
                     </div>
                     <div class="text-muted">
-                        Nghệ sĩ
+                        Muhammederdem                    
                     </div>
                 </div>
                 <hr/>
             </li>
             {{-- record bài hát --}}
             <li class="d-flex gap-3 mb-2  p-2 rank-card">
-                <div class="">
-                    <span class="number special-2 fs-5">
-                        2
-                    </span>
-                </div>
-                <div class="">
-                    <div class="fw-semibold">
-                        Tên bài hát
+             
+                    <div class="">
+                        <span class="number special-2 fs-5">
+                            2
+                        </span>
                     </div>
-                    <div class="text-muted">
-                        Nghệ sĩ
+                    <div class="">
+                        <div class="fw-semibold">
+                            Nhạc rất ok
+                        </div>
+                        <div class="text-muted">
+                            Sơn tùng
+                        </div>
                     </div>
-                </div>
+                    
+               
             </li>
             <li class="d-flex gap-3 mb-2  p-2 rank-card">
                 <div class="">
@@ -54,47 +57,19 @@
                 </div>
                 <div class="">
                     <div class="fw-semibold">
-                        Tên bài hát
+                        Test
                     </div>
                     <div class="text-muted">
-                        Nghệ sĩ
-                    </div>
-                </div>
-            </li>
-            <li class="d-flex gap-3 mb-2  p-2 rank-card">
-                <div class="">
-                    <span class="number special-4 fs-5">
-                        4
-                    </span>
-                </div>
-                <div class="">
-                    <div class="fw-semibold">
-                        Tên bài hát
-                    </div>
-                    <div class="text-muted">
-                        Nghệ sĩ
-                    </div>
-                </div>
-            </li>
-            <li class="d-flex gap-3 mb-2  p-2 rank-card">
-                <div class="">
-                    <span class="number special-5 fs-5">
-                        5
-                    </span>
-                </div>
-                <div class="">
-                    <div class="fw-semibold">
-                        Tên bài hát
-                    </div>
-                    <div class="text-muted">
-                        Nghệ sĩ
+                        
                     </div>
                 </div>
             </li>
             
+           
+            
        </ul>
     </div>
-    <div class=" mb-4">
+    {{-- <div class=" mb-4">
         <div class="card-header text-primary mb-2 fs-3">Chủ đề HOT</div>
         <div class="card-body w-100">
             <div class="row">
@@ -115,5 +90,5 @@
                 
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>

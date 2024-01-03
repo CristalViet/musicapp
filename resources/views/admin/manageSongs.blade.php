@@ -1,5 +1,4 @@
 
-
 @extends('layouts/main')
 @section('ContentWarpper')
 <div class="content-wrapper">
@@ -45,17 +44,7 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>Số lượng thể loại</h3>
-
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+         
           </div>
           <!-- ./col -->
       
@@ -63,27 +52,39 @@
         </div>
         <!-- /.row -->
         <!-- Main row -->
+        <div class="row mt-10">
+          <a href="{{route("admin.addSongs")}}">
+            <div class="btn btn-primary text-center mb-2 ml-10">Thêm</div> 
+          </a>
+          
+        </div>
         <div class="row">
+         
           <!-- Left col -->
+         
+       
           <table class="container  table-bordered">
+         
            <thead class="table-primary" style="background: #007bff">
             <th>STT</th>
-            <th>Tên bài ahst</th>
-            <th>tác giả</th>
-            <th>thể loại</th>
+            <th>Tên bài hát</th>
+            <th>Người đăng</th>
+           
             <th>mô tả</th>
             <th>Action</th>
            </thead>
-        
+          
          <tbody>
             @foreach ($songs as $song)
-        
-          
+            @php
+                $nguoidang=DB::table('users')->where('id', "$song->user_id")->first();
+
+            @endphp
             <tr>
-                <td>1</td>
+                <td>{{$song->id}}</td>
                 <td>{{$song->title}}</td>
-                <td>{{$song->title}}</td>
-                <td>{{$song->title}}</td>
+                <td>{{$nguoidang->name}}</td>
+           
                 <td>{{$song->description}}</td>
               
                 <td class="d-flex">
@@ -93,7 +94,7 @@
                    
                         
                        
-                      <form id="" action="" method="post">
+                      <form id="" action="songs/2" method="post">
                           @csrf
                           @method('delete')
                           <button class="btn btn-primary" type="submit">Xóa
@@ -110,7 +111,9 @@
          </tbody>
             
 
-          </table>
+        </table>
+   
+
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
 

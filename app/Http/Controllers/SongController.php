@@ -37,13 +37,15 @@ class SongController extends Controller
     }
     public function runPlaylist(String $id){
         $playlist=playlist::find($id);
+        $author=User::find($playlist->user_id)->name;
         $songs=DB::table('song_playlists')->join('songs','song_playlists.song_id','=','songs.id')
         ->join('playlists','song_playlists.playlist_id','=','playlists.id')
         ->where('song_playlists.playlist_id','=',$id)->select('songs.*')->get();
     //   dd($songs);   
         return view('playlists.run_Playlist',[
              'songs'=>$songs,
-             'playlist'=>$playlist
+             'playlist'=>$playlist,
+             'author'=>$author
         ]);
     }
 
@@ -127,6 +129,20 @@ class SongController extends Controller
         return view('songs.baihatmoi', [
             'playlist' => ["https://dl.dropbox.com/s/oswkgcw749xc8xs/The-Noisy-Freaks.mp3?dl=1", "https://dl.dropbox.com/s/75jpngrgnavyu7f/The-Noisy-Freaks.ogg?dl=1", "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3"]
         ]);
+    }
+    public function favouriteSong(){
+        $user=auth()->user();
+        $songsFavourite=DB::table('likes')->where('user_id',$user->id);
+        $songs=DB::table('songs')->join('likes','songs.id','=','likes.song_id')->select('songs.*')->get();
+        // dd($songs);
+        return view('users.userFavouriteSongs',['songs'=>$songs]);
+    }
+    public function UnFavouriteSong(String $id){
+        $user=auth()->user();
+        $songsFavourite=DB::table('likes')->where('user_id',$user->id)->where('song_id','=',$id)->delete();
+        // $songs=DB::table('songs')->join('likes','songs.id','=','likes.song_id')->select('songs.*')->get();
+        // dd($songs);
+        return redirect()->route('favouriteSongs');
     }
     
 }

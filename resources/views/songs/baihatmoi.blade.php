@@ -26,7 +26,7 @@
                         <div class="w-fit d-flex flex-column justify-content-center align-items-center">
                             <h6 class="m-0">Tạo bởi</h6>
                     
-                            <p class="m-0"></p>
+                            <p class="m-0">{{$author}}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-3">
@@ -34,37 +34,22 @@
                         <p class="m-0"><i class="fa-solid fa-download"></i> Tải xuống</p>
                     </div>
                 </div>
-                <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
+                {{-- <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
                     <h6><i class="fa-solid fa-tag"></i> Tags:</h6>
                     <div class="d-flex flex-wrap gap-3">
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                         <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
                     </div>
-                </div>
+                </div> --}}
                 <div class=" border rounded-3 py-3 px-4 mt-3">
                     <h4 class="">Thong tin:</h4>
                     <hr>
                     <div class="d-flex align-items-center gap-3 mb-1">
                         <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
+                        <p class="m-0">$song->title</p>
                     </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
+                   
                 </div>
             </div>
             <div class="col-md-1"></div>

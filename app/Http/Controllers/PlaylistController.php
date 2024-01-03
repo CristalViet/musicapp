@@ -19,7 +19,7 @@ class PlaylistController extends Controller
        
             $activeTab='playlist';
             $playlists=auth()->user()->playlists;
-            
+        
             return view('users.playlist',compact('activeTab','playlists'));
         
     }

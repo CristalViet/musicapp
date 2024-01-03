@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\artist;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\table;
+
 class ArtistController extends Controller
 {
     /**
@@ -45,7 +48,7 @@ class ArtistController extends Controller
         if($request->hasFile('artist_img')){
             $artist_img=$request->file('artist_img')->store('avatars','public');
         }
-        dd($artist_img);
+
         $artist= artist::create([
             'name' => $formField['name'],
             'description' => $formField['description'],
@@ -86,5 +89,16 @@ class ArtistController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function searchArtist(Request $request){
+        $query = $request->input('query');
+        if ($query) {
+            $artists = Artist::where('name', 'like', '%' . $query . '%')->get();
+            
+            return response()->json(['artists' => $artists]);
+        }
+
+        return response()->json(['artists' => []]);
+
     }
 }

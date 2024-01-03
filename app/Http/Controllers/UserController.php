@@ -57,7 +57,7 @@ class UserController extends Controller
             ->where('id',$user['id'])
             ->update(['name'=> $formField['name']]);
         
-        return redirect(route('settingView'));
+        return redirect(route('userSetting'));
     }   
     public function destroy($id){
      
@@ -130,9 +130,9 @@ class UserController extends Controller
             $existingLike=DB::table('likes')->where('user_id', $user->id)->where('song_id', $id)->first();
   
             DB::table('likes')->where('id', $existingLike->id)->delete();
-            return response()->json(['message'=>'hủy yêu thích']);
+            return response()->json(['message'=>'Yêu thích']);
         }
-        return response()->json(['message'=>'yêu thích']);
+        return response()->json(['message'=>'Hủy yêu thích']);
     }
 }
  

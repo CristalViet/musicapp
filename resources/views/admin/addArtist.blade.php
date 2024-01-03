@@ -94,10 +94,10 @@
                         </div>
                     </div>
                     <div class="row mb-3 align-items-center">
-                        <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Ảnh') }}</label>
+                        <label for="artist_img" class="col-md-4 col-form-label text-md-end">{{ __('Ảnh') }}</label>
 
                         <div class="col-md-6">
-                            <input class="mb-3" type="file" name="avatar" id="avatarInput" onchange="displayImage()" accept=".jpg, .jpeg, .png">
+                            <input class="mb-3" type="file" name="artist_img" id="avatarInput" onchange="displayImage()" accept=".jpg, .jpeg, .png">
                             <div>
                                 <img src="" alt="" id="avatarPreview" style="max-width: 100%; max-height: 200px;">
                             </div>

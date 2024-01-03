@@ -7,13 +7,13 @@
     <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="container" ></div>        <br>
         <div class="row">
             <div class="col-md-7">
-                <h5 class=" text-xl">Trang chủ > Depacito</h5>
+                <h5 class=" text-xl">Trang chủ > {{$song->title}}</h5>
                 <div class="player-container">
                     <audio id="song" >
                         <source id="source" type="audio/mpeg" src="{{asset('storage/' . $song->song_url )}}">
                     </audio>
                     <div class="progress-container">
-                        <h4>Despacito</h4>
+                        <h4> {{$song->title}}</h4>
                         <p class="opacity-75">Muhammederdem</p>
                         <input id="progress" type="range" value=0>
                     </div>
@@ -44,20 +44,19 @@
 
                     
                                 @endphp
-                                    <a href="" class="unlink">
-                                        <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> Thêm vào playlist</p>   
-                                    </a>
+                                    
+                                    <a href="" id="yeuthich-btn" class="unlink" data-song-id="{{$song->id}}">
                                 @if (count($existingLike)==0)
-                                <a href="" id="yeuthich-btn" class="unlink" data-song-id="{{$song->id}}">
+                                
                                 <p class="m-0"><i class="fa-solid fa-plus border p-1 rounded-circle"></i> <span>Yêu thích</span> </p>     
                                 @else
-                                <p class="m-0"><i class="fa-solid fa-check border p-1 rounded-circle"></i> <span>Đã Yêu thích</span></p>  
-                                </a>   
+                                <p class="m-0"><i class="fa-solid fa-check border p-1 rounded-circle"></i> <span>Hủy yêu thích</span></p>  
+                                 
                                 @endif
-                                @else
+                        
                                     
                                 @endif
-                               
+                            </a>  
                                 
                     
                   
@@ -67,36 +66,14 @@
 
                     </div>
                 </div>
-                <div class=" d-flex align-items-center mt-3 px-3 gap-5 border py-3 rounded-3" style="background-color: ">
-                    <h6><i class="fa-solid fa-tag"></i> Tags:</h6>
-                    <div class="d-flex flex-wrap gap-3">
-                        <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
-                        <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
-                        <p class="m-0 p-1 px-2 rounded-3 text-light" style="background-color: grey">Nhacj hanf</p>
-                    </div>
-                </div>
+               
                 <div class=" border rounded-3 py-3 px-4 mt-3">
                     <h4 class="">Thong tin:</h4>
                     <hr>
+                   
                     <div class="d-flex align-items-center gap-3 mb-1">
                         <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 mb-1">
-                        <h6 class="m-0">Tên bài hát:</h6>
-                        <p class="m-0">Depacito</p>
+                        <p class="m-0">{{$song->title}}</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +95,7 @@
                         </table>
                     </div>
                 </div> --}}
-                <div class="p-3">
+                {{-- <div class="p-3">
                     <h4 class="">Similar songs</h4>
                     <br>
                     <div class="d-flex gap-3 align-items-center mb-4">
@@ -146,13 +123,14 @@
                         </div>
                     </div>
                     
-                </div>
+                </div> --}}
             </div> 
         </div>
+        <div style="height: 400px"></div>
         <script>
             // let playlist=JSON.parse(document.getElementById("playlist").getAttribute('playlist'))
             let src=document.getElementById('source');
-            let currentIndex=0;
+            // let currentIndex=0;
             // console.log(playlist[currentIndex])
             // src.setAttribute("src",playlist[currentIndex])
             let progress=document.getElementById('progress');
@@ -174,6 +152,7 @@
                     playicon.classList.remove('fa-play')
                 }
             }
+
             if(song.play()){
                 setInterval(()=>{
                     progress.value=song.currentTime;
@@ -182,8 +161,8 @@
             progress.oninput=function(){
                 song.play()
                 song.currentTime=progress.value;
-                playicon.classList.add('fa-pause')
-                playicon.classList.remove('fa-play')
+                playicon.classList.add('fa-play')
+                playicon.classList.remove('fa-pause')
             }
             // function next(){
             //     if(currentIndex+1>=playlist.length)return;
@@ -258,7 +237,7 @@
                 success: function (response) {
                     console.log(response.message);
                     
-                    if(response.message  == 'yêu thích'){
+                    if(response.message  == 'Yêu thích'){
                         console.log('ko desu');
                         self.find('span').text('Yêu thích');
                         self.find('i').removeClass('fa-check').addClass('fa-plus');
@@ -266,7 +245,7 @@
                     }
                     else {
                         console.log('Ok desu');
-                        self.find('span').text('Đã Yêu thích');
+                        self.find('span').text('Hủy yêu thích');
                         self.find('i').removeClass('fa-plus').addClass('fa-check');
               
                     }  

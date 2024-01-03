@@ -31,6 +31,7 @@ Route::get('/',[HomeController::class,'index'])->name('indexhome');
 
 //song playlist
 Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
+
 Route::get('/playlists/{playlist}', [SongController::class, 'runPlaylist'])->name('run_playlist');
 Route::get('/search/', [SearchController::class,'search'])->name('search');
 
@@ -47,6 +48,8 @@ Route::middleware(['admin'])->group(function () {
 
         // quan li bai hat
         Route::get('manage/songs',[adminController::class,'manageSongsView'])->name('admin.manageSongs');
+        Route::get('manage/addSongs',[adminController::class,'manageAddSongsView'])->name('admin.addSongs');
+        Route::delete('manage/songs/{song}',[SongController::class,'destroy'])->name('admin.manageDeleteSongs');
         // Route::put('/manage/users/{user}', [SongController::class, 'edit'])->name('updateUser');
         // quan li genres
         Route::get('manage/genres/add',[GenreController::class,'create'])->name('admin.addGenre');
@@ -69,7 +72,7 @@ Route::post('/yeuthich/{song}',[UserController::class,'addFavouriteSong'])->name
 Route::group(['prefix'=>'user'], function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashBoardview'])->name('userDashBoard');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
-    // Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('user');
+    Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('settingView');
     
     
     //Playlist 
@@ -82,13 +85,17 @@ Route::group(['prefix'=>'user'], function(){
     //song
     Route::get('/userSongs', [HomeController::class, 'userSongsView'])->name('userSongs');
     Route::get('/addSong', [HomeController::class, 'userAddSongsView'])->name('addSong');
+    Route::post('/searchArtist', [ArtistController::class, 'searchArtist'])->name('searchArtist');
+
     Route::post('/addSong', [SongController::class, 'store'])->name('storeSong');
     Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('destroySong');
     Route::put('/change', [UserController::class, 'update'])->name('changeInforUser');
     Route::get('/edit/{song}', [SongController::class, 'editForm'])->name('showInfoSong');
     Route::put('/edit/{song}', [SongController::class, 'update'])->name('updateSong');
-    
-Route::PUT('/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
+    Route::get('favourite/songs',[SongController::class,'favouriteSong'])->name('favouriteSongs');
+    Route::delete('favourite/songs/{song}',[SongController::class,'UnFavouriteSong'])->name('UnFavouriteSong');
+
+Route::put('/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
 });
 
 // Route::post('/user/setting', [UserController::class,'updateAvatar'])->name('update-avatar');

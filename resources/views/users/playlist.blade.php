@@ -19,31 +19,7 @@
             <th>STT</th>
             <th>Tên playlist</th>
             <th>Chức năng</th>
-            <tr>
-                <td>1</td>
-                <td>Vì ngày xưa</td>
-                <td>
-                    <a href="{{route('editPLaylistView')}}">
-                        <button  class="unlink ms-1">
-                            <i
-                            class="fa-solid fa-pen-to-square"></i> Sửa
-                        </button>
-                    </a>
-                   
-
-                    
-                    {{-- <form id="deleteSong" action="" method="post">
-                        @csrf
-                        @method('delete') --}}
-                        <a href="Xóa" class="unlink ms-1 " type="submit">
-                            <i
-                            class="fa-solid fa-pen-to-square "></i> Xóa
-                        </a>
-                    {{-- </form> --}}
-                </td>
-       
-
-           </tr>
+            
           
                 @php
                 $count=0;
@@ -60,9 +36,12 @@
                      
                      
                         <div >
-                            <button href="{{route('editPLaylistView')}}" class=" ms-1 btn btn-primary ">
-                                <i class="fa-solid fa-pen-to-square"></i> Sửa
-                            </button>
+                            <a href="{{route('editPLaylistView')}}">
+                                <button  class=" ms-1 btn btn-primary ">
+                                    <i class="fa-solid fa-pen-to-square"></i> Sửa
+                                </button>
+                            </a>
+                          
                         </div>
                         <div >
                             <form id="deleteSong" action="playlists/{{$playlist->id}}" method="post">

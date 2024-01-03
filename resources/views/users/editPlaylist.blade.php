@@ -8,7 +8,7 @@
                     <div class="col-5">
                         <div class="form-group">
                             <label for="">Tên playlist</label>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" name="title" class="form-control" value="">
                     </div>
                     @error('title')
                     <p class="text-danger">{{$message}}</p>
