@@ -19,13 +19,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     
     </head>
-    <body class="pt-5" style= "background-image: url('{{asset('assets/bg.png')}}')">
+    <body class="pt-5" >
         
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg py-2 navbar-dark bg-light fixed-top" style= "background-image: url('{{asset('assets/nav.png')}}') !important" >
+        <nav class="navbar navbar-expand-lg py-2 navbar-dark bg-light fixed-top">
             <div class="container d-flex justify-content-between">
                 <div class="d-flex">
-                    <a class="navbar-brand text-dark" style= "color: #fff !important" href="/">FunTune</a>
+                    <a class="navbar-brand text-dark" href="/">FunTune</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
@@ -42,10 +42,10 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center list-unstyled" >
                         <li class="nav-item me-1">
-                            <div class="input-group bg-white rounded-pill" style= "background-color: #0B153C !important">
+                            <div class="input-group bg-white rounded-pill">
                                 <form action="{{route('search')}}" method="get">
                                 <input class=" border-0 rounded-pill" type="text" placeholder="Find you song" name="search" aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary rounded-circle bg-dark border-0"  id="button-search" type="submit" style= "background-color: #0B153C !important"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                <button class="btn btn-primary rounded-circle bg-dark border-0"  id="button-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
                             </div>
                         </li>
@@ -77,13 +77,13 @@
                         @else
                        
                         @if (Route::has('login'))
-                        <li class="nav-item me-1" style= "background-color: #17C2EC !important">
-                            <a class="nav-link text-dark" style= "color: #fff !important" href="{{ route('login') }}"><span>Đăng nhập</span> <i class="fa-solid fa-user-tie"></i></a>
+                        <li class="nav-item me-1">
+                            <a class="nav-link text-dark" href="{{ route('login') }}"><span>Đăng nhập</span> <i class="fa-solid fa-user-tie"></i></a>
                         </li>
                         @endif
                         @if (Route::has('register'))
-                                <li class="nav-item" style= "background-color: #17C2EC !important; border-radius: 25px">
-                                    <a class="nav-link text-dark" href="{{ route('register') }}" style= "color: #fff !important"><span>Đăng ký</span> <i class="fa-solid fa-user-tie"></i></a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="{{ route('register') }}"><span>Đăng ký</span> <i class="fa-solid fa-user-tie"></i></a>
                                 </li>
                         
                          @endif
@@ -101,7 +101,7 @@
     
         <!-- Page content-->
 
-        <div class="mt-5 container" style= "background-image: url('../../../app/image/bg.png')" >
+        <div class="mt-5 container" >
 
             {{$slot}}
         </div>
@@ -113,7 +113,7 @@
                 
        
         <!-- Footer-->
-        <footer class="py-5 bg-dark " style= "background-image: url('{{asset('assets/nav.png')}}') !important ">
+        <footer class="py-5 bg-dark ">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; FunTune 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
