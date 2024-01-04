@@ -12,6 +12,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\SearchController;
 use App\Models\User;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('manage/genres/add',[GenreController::class,'create'])->name('admin.addGenre');
         Route::post('manage/genres/add',[GenreController::class,'store'])->name('admin.storeGenre');
         Route::get('manage/genres',[adminController::class,'manageGenresView'])->name('admin.manageGenres');
-   
+        http://127.0.0.1:8000/send
         //quan li nghe si
         Route::get('manage/artists/add',[ArtistController::class,'create'])->name('admin.addArtist');
         Route::post('manage/artists/add',[ArtistController::class,'store'])->name('admin.storeArtist');
@@ -100,8 +101,4 @@ Route::put('/setting', [UserController::class,'updateAvatar'])->name('update-ava
 
 // Route::post('/user/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
 
-
-
-
-
-
+Route::get('/send', [MailController::class,'index']);
