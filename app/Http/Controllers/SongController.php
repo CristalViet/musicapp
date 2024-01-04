@@ -7,6 +7,7 @@ use App\Models\genre;
 use App\Models\song;
 use App\Models\User;
 use App\Models\playlist;
+use App\Models\View;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,19 @@ class SongController extends Controller
     {
         $song = song::find($id);
         $author = User::find($song->user_id)->name;
+        if (Auth::check() && auth()->user()->role == 1) {
+            $userId = Auth::id();
 
+            // Check if the view entry already exists for the current user and song
+            DB::table('views')
+                ->where('user_id', $userId)
+                ->where('song_id', $id)
+                ->delete();
+            $view = new View();
+            $view->song_id = $id;
+            $view->user_id = $userId;
+            $view->save();
+        }
         return view('songs.song', [
             'song' => $song,
             'author' => $author

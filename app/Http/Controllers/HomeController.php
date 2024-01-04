@@ -55,12 +55,6 @@ class HomeController extends Controller
         $activeTab = 'home';
         return view('users.userSetting', compact('activeTab'));
     }
-    // public function show2( )
-    // {      
-    //     $playlist=[];
-
-    //     return view('songs.baihatmoi',['playlist'=>$pla]);
-    // }
 
     public function userSongsView()
     {

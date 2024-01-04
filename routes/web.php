@@ -75,7 +75,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
     Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('settingView');
 
-
+    //History
+    Route::get('/userHistory', [App\Http\Controllers\ViewController::class, 'index'])->name('userHistory');
     //Playlist 
     Route::get('/userplaylist', [PlaylistController::class, 'index'])->name('userPlaylists');
     Route::get('/addPlaylist', [HomeController::class, 'userAddPlaylistsView'])->name('addPlaylist');
