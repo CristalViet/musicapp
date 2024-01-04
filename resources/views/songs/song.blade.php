@@ -1,27 +1,28 @@
 @php
     $playlist=[];
+    if(!$song->song_img){
+        $song->song_img="https://alikinvv.github.io/minimal-player/build/img/album.jpg";
+    }else{
+        $song->song_img=asset('storage/'.$song->song_img);
+    }
 @endphp
 <x-layout>
-<<<<<<< HEAD
-    <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="mt-10 container" ></div>        <br>
-=======
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div id="playlist" playlist="<?php echo htmlspecialchars(json_encode($playlist)); ?>" class="container" ></div>        <br>
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
         <div class="row">
             <div class="col-md-7">
                 <h5 class=" text-xl">Trang chủ > {{$song->title}}</h5>
                 <div class="player-container">
                     <audio id="song" >
-                        <source id="source" type="audio/mpeg" src="{{asset('storage/' . $song->song_url )}}">
+                        <source id="source" type="audio/mpeg" src="{{asset('storage/'.$song->song_url)}}">
                     </audio>
                     <div class="progress-container">
                         <h4> {{$song->title}}</h4>
                         <p class="opacity-75">Muhammederdem</p>
                         <input id="progress" type="range" value=0>
                     </div>
-                    <img class="player-img" src="https://alikinvv.github.io/minimal-player/build/img/album.jpg" alt="">
+                    <img class="player-img" src="{{$song->song_img}}" alt="">
                     <div class="controls">
                         <div onClick="prev()"><i class="fa-solid fa-backward"></i></div>
                         <div onClick="playPause()"><i id="play-icon" class="fa-solid fa-play"></i></div>
@@ -142,8 +143,9 @@
             let playicon=document.getElementById('play-icon');
          
             song.onloadedmetadata=function(){
-                progress.max=song.duration
-                progress.value=song.currentTime
+                // progress.max=song.duration
+                // progress.value=song.currentTime
+                progressBar.value = (song.currentTime / song.duration) * 100;
             }
             function playPause(){
                 if(playicon.classList.contains("fa-pause")){
@@ -159,14 +161,15 @@
 
             if(song.play()){
                 setInterval(()=>{
-                    progress.value=song.currentTime;
+                    progress.value= (song.currentTime / song.duration) * 100;;
                 },500)
             }
             progress.oninput=function(){
                 song.play()
-                song.currentTime=progress.value;
-                playicon.classList.add('fa-play')
-                playicon.classList.remove('fa-pause')
+                // song.currentTime=progress.value;
+                song.currentTime = (progress.value / 100) * song.duration;
+                playicon.classList.remove('fa-play')
+                playicon.classList.add('fa-pause')
             }
             // function next(){
             //     if(currentIndex+1>=playlist.length)return;
@@ -194,16 +197,16 @@
             //     console.log(playlist[currentIndex]);
             // }
             song.addEventListener("ended", function(){
-                currentIndex++;
-                src.setAttribute("src",playlist[currentIndex])
-                song.currentTime = 0;
-                song.play();
-                console.log(playlist[currentIndex]);
-                if(!playlist[currentIndex]){
+                // currentIndex++;
+                // src.setAttribute("src",playlist[currentIndex])
+                // song.currentTime = 0;
+                // song.play();
+                // console.log(playlist[currentIndex]);
+                // if(!playlist[currentIndex]){
                     song.pause()
-                    playicon.classList.add('fa-pause')
-                    playicon.classList.remove('fa-play')
-                }
+                    playicon.classList.remove('fa-pause')
+                    playicon.classList.add('fa-play')
+                // }
             });
     </script>
 

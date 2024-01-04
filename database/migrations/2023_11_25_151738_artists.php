@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('website')->nullable();
             $table->string('artist_img')->nullable();
+            $table->tinyInteger('gender');
 
-       
             $table->timestamps();
         });
     }

@@ -15,10 +15,10 @@
         <div class="pt-2"></div>    
         <div class="divider"></div>
         {{-- List song --}}
-        <table >
-            <th>STT</th>
-            <th>Tên bài hát</th>
-            <th>Chức năng</th>
+        <table class="table">
+            <th scope="col">STT</th>
+            <th scope="col">Tên bài hát</th>
+            <th scope="col">Chức năng</th>
             
             @foreach ($songs as $song)
             @php
@@ -39,10 +39,9 @@
                         <form id="deleteSong" action="songs/{{$song->id}}" method="post">
                             @csrf
                             @method('delete')
-                            <button  class=" btn btn-secondary unlink ms-1" type="submit">
-                                <i
-                                class="fa-solid fa-pen-to-square"></i> Xóa
-                        </button>
+                            <button class="btn btn-secondary unlink ms-1" type="submit">
+                                <i class="fa-solid fa-pen-to-square"></i> Xóa
+                            </button>
                         </form>
                     </div>
                     

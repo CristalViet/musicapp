@@ -24,21 +24,16 @@ use App\Models\User;
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', [SongController::class, 'list']);
-Route::get('/songs/{song}', [SongController::class, 'index'])->name('song');
-=======
 // Route::get('/', function () {
 //     return view('users.index');
 // });
-Route::get('/',[HomeController::class,'index'])->name('indexhome');
+Route::get('/', [HomeController::class, 'index'])->name('indexhome');
 
 //song playlist
-Route::get('/songs/{song}', [SongController::class,'index'])->name('song');
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
+Route::get('/songs/{song}', [SongController::class, 'index'])->name('song');
 
 Route::get('/playlists/{playlist}', [SongController::class, 'runPlaylist'])->name('run_playlist');
-Route::get('/search/', [SearchController::class,'search'])->name('search');
+Route::get('/search/', [SearchController::class, 'search'])->name('search');
 
 
 Route::middleware(['admin'])->group(function () {
@@ -52,19 +47,19 @@ Route::middleware(['admin'])->group(function () {
         Route::put('/manage/users/{user}', [UserController::class, 'edit'])->name('updateUser');
 
         // quan li bai hat
-        Route::get('manage/songs',[adminController::class,'manageSongsView'])->name('admin.manageSongs');
-        Route::get('manage/addSongs',[adminController::class,'manageAddSongsView'])->name('admin.addSongs');
-        Route::delete('manage/songs/{song}',[SongController::class,'destroy'])->name('admin.manageDeleteSongs');
+        Route::get('manage/songs', [adminController::class, 'manageSongsView'])->name('admin.manageSongs');
+        Route::get('manage/addSongs', [adminController::class, 'manageAddSongsView'])->name('admin.addSongs');
+        Route::delete('manage/songs/{song}', [SongController::class, 'destroy'])->name('admin.manageDeleteSongs');
         // Route::put('/manage/users/{user}', [SongController::class, 'edit'])->name('updateUser');
         // quan li genres
-        Route::get('manage/genres/add',[GenreController::class,'create'])->name('admin.addGenre');
-        Route::post('manage/genres/add',[GenreController::class,'store'])->name('admin.storeGenre');
-        Route::get('manage/genres',[adminController::class,'manageGenresView'])->name('admin.manageGenres');
-   
+        Route::get('manage/genres/add', [GenreController::class, 'create'])->name('admin.addGenre');
+        Route::post('manage/genres/add', [GenreController::class, 'store'])->name('admin.storeGenre');
+        Route::get('manage/genres', [adminController::class, 'manageGenresView'])->name('admin.manageGenres');
+
         //quan li nghe si
-        Route::get('manage/artists/add',[ArtistController::class,'create'])->name('admin.addArtist');
-        Route::post('manage/artists/add',[ArtistController::class,'store'])->name('admin.storeArtist');
-        Route::get('manage/artists',[ArtistController::class,'index'])->name('admin.manageArtists');
+        Route::get('manage/artists/add', [ArtistController::class, 'create'])->name('admin.addArtist');
+        Route::post('manage/artists/add', [ArtistController::class, 'store'])->name('admin.storeArtist');
+        Route::get('manage/artists', [ArtistController::class, 'index'])->name('admin.manageArtists');
     });
 });
 Auth::routes();
@@ -73,22 +68,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/show2', [SongController::class, 'show2'])->name('show2');
-<<<<<<< HEAD
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashBoardview'])->name('userDashBoard');
-    Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
-    // Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('user');
+Route::post('/yeuthich/{song}', [UserController::class, 'addFavouriteSong'])->name('addFavouriteSong');
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
-
-=======
-Route::post('/yeuthich/{song}',[UserController::class,'addFavouriteSong'])->name('addFavouriteSong');
-Route::group(['prefix'=>'user'], function(){
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashBoardview'])->name('userDashBoard');
     Route::get('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('userSetting');
     Route::put('/setting', [App\Http\Controllers\HomeController::class, 'settingView'])->name('settingView');
-    
-    
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
+
+
     //Playlist 
     Route::get('/userplaylist', [PlaylistController::class, 'index'])->name('userPlaylists');
     Route::get('/addPlaylist', [HomeController::class, 'userAddPlaylistsView'])->name('addPlaylist');
@@ -106,15 +93,10 @@ Route::group(['prefix'=>'user'], function(){
     Route::put('/change', [UserController::class, 'update'])->name('changeInforUser');
     Route::get('/edit/{song}', [SongController::class, 'editForm'])->name('showInfoSong');
     Route::put('/edit/{song}', [SongController::class, 'update'])->name('updateSong');
-<<<<<<< HEAD
+    Route::get('favourite/songs', [SongController::class, 'favouriteSong'])->name('favouriteSongs');
+    Route::delete('favourite/songs/{song}', [SongController::class, 'UnFavouriteSong'])->name('UnFavouriteSong');
 
-    Route::PUT('/setting', [UserController::class, 'updateAvatar'])->name('update-avatar');
-=======
-    Route::get('favourite/songs',[SongController::class,'favouriteSong'])->name('favouriteSongs');
-    Route::delete('favourite/songs/{song}',[SongController::class,'UnFavouriteSong'])->name('UnFavouriteSong');
-
-Route::put('/setting', [UserController::class,'updateAvatar'])->name('update-avatar');
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
+    Route::put('/setting', [UserController::class, 'updateAvatar'])->name('update-avatar');
 });
 
 // Route::post('/user/setting', [UserController::class,'updateAvatar'])->name('update-avatar');

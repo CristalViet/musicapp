@@ -5,11 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-<<<<<<< HEAD
-=======
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
         <title class="">FunTune</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}" />
@@ -31,16 +28,9 @@
                     <a class="navbar-brand text-dark" href="/">FunTune</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-<<<<<<< HEAD
-                            <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark" href="#!">About</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark" href="#!">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link text-dark active" aria-current="page" href="#">Blog</a></li>
-=======
 
                       
 
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
                            
                         </ul>
                      
@@ -53,15 +43,10 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center list-unstyled" >
                         <li class="nav-item me-1">
                             <div class="input-group bg-white rounded-pill">
-<<<<<<< HEAD
-                                <input class="form-control border-0 rounded-pill" type="text" placeholder="Find you song" aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary rounded-circle bg-dark border-0" id="button-search" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-=======
                                 <form action="{{route('search')}}" method="get">
                                 <input class=" border-0 rounded-pill" type="text" placeholder="Find you song" name="search" aria-label="Enter search term..." aria-describedby="button-search" />
                                 <button class="btn btn-primary rounded-circle bg-dark border-0"  id="button-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </form>
->>>>>>> 18b4434af623be9ccb0513cf1de3b5171332a5c6
                             </div>
                         </li>
                      @if (auth()->check())
