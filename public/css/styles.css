@@ -7624,7 +7624,6 @@ textarea.form-control-lg {
 
 .me-1 {
   margin-right: 0.25rem !important;
-  border-radius: 25px;
 }
 
 .me-2 {
@@ -7665,7 +7664,6 @@ textarea.form-control-lg {
 
 .mb-4 {
   margin-bottom: 1.5rem !important;
-  color: #fff !important;
 }
 
 .mb-5 {
@@ -8073,7 +8071,6 @@ textarea.form-control-lg {
 .text-dark {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
-  font-weight: 700;
 }
 
 .text-black {
