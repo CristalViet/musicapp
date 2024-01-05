@@ -18,8 +18,6 @@ return new class extends Migration
             $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade')->after('id');
             $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade')->after('id');
             $table->timestamps();
-            
-           
         });
     }
 

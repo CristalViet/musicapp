@@ -1,7 +1,7 @@
 @php
     $count=0;
 @endphp
-<x-userSettingLayout : activeTab="songs">
+<x-userSettingLayout : activeTab="playlist">
     <div class="row">
         <div class="fs-1">Danh sách bài hát của playlist {{$playlist->title}}</div>
         <div class="d-flex">

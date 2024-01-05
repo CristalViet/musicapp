@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade')->after('id');
             $table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade')->after('id');
-           
         });
     }
 

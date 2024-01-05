@@ -1,6 +1,12 @@
 @php
     $playlist=[];
-    
+
+    if(!$song->song_img){
+        $song->song_img="https://alikinvv.github.io/minimal-player/build/img/album.jpg";
+    }else{
+        $song->song_img=asset('storage/'.$song->song_img);
+    }
+
 @endphp
 <x-layout>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,7 +24,7 @@
                         <p class="opacity-75">Muhammederdem</p>
                         <input id="progress" type="range" value=0>
                     </div>
-                    <img class="player-img" src="https://alikinvv.github.io/minimal-player/build/img/album.jpg" alt="">
+                    <img class="player-img" src="{{$song->song_img}}" alt="">
                     <div class="controls">
                         <div onClick="prev()"><i class="fa-solid fa-backward"></i></div>
                         <div onClick="playPause()"><i id="play-icon" class="fa-solid fa-play"></i></div>
@@ -139,8 +145,9 @@
             let playicon=document.getElementById('play-icon');
          
             song.onloadedmetadata=function(){
-                progress.max=song.duration
-                progress.value=song.currentTime
+                // progress.max=song.duration
+                // progress.value=song.currentTime
+                progressBar.value = (song.currentTime / song.duration) * 100;
             }
             function playPause(){
                 if(playicon.classList.contains("fa-pause")){
@@ -156,12 +163,15 @@
 
             if(song.play()){
                 setInterval(()=>{
-                    progress.value=song.currentTime;
+                    progress.value= (song.currentTime / song.duration) * 100;;
                 },500)
             }
             progress.oninput=function(){
                 song.play()
-                song.currentTime=progress.value;
+
+                // song.currentTime=progress.value;
+                song.currentTime = (progress.value / 100) * song.duration;
+
                 playicon.classList.remove('fa-play')
                 playicon.classList.add('fa-pause')
             }
@@ -198,8 +208,10 @@
                 // console.log(playlist[currentIndex]);
                 // if(!playlist[currentIndex]){
                     song.pause()
-                    playicon.classList.add('fa-pause')
-                    playicon.classList.remove('fa-play')
+
+                    playicon.classList.remove('fa-pause')
+                    playicon.classList.add('fa-play')
+
                 // }
             });
     </script>

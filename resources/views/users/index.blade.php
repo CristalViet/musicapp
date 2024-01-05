@@ -15,9 +15,7 @@
 
             </x-category>
         </x-left-layout>
-        <x-right-layout >
-            
-        </x-right-layout>
+        <x-right-layout :topSongs="$topSongs"/>
     </x-pageContent>
 
 </x-layout>
