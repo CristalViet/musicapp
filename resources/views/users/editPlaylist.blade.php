@@ -2,7 +2,9 @@
 <x-userSettingLayout : activeTab="PLaylist">
     <h2>Sửa playlist {{$playlist->title}}  </h2>
         
-            <form action="" method="POST" id="formPlaylist" enctype="multipart/form-data">
+            <form action="/user/editPlaylist/{{$playlist->id}}" method="POST" id="formPlaylist" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
                 <div class="row">
@@ -37,6 +39,7 @@
                 <label for="">Bài hát thật</label>
                       
                             <input id="search-input" type="search" name="songs" class="w-40 form-control" id="" >
+                            <input type="hidden" name="danhsachcu" id="danhsachcu" value="{{$danhsachcu}}">
                  {{-- Chọn bài hát cho playlist --}}
                 <div class="row mt-5 mb-5">
                     <h2>Danh sách bài hát</h2>
@@ -52,7 +55,7 @@
                           </div> --}}
                         
                      
-                        <div id="listsongs" class="overflow-auto" style="height: 200px" data-listsong="{{$listsong}}">
+                        <div id="listsongs" class="overflow-auto" style="height: 200px" >
                             
                             {{-- @for ($i = 0; $i < $count; $i++)
                             <div  class="list-group-item list-group-item-action d-flex justify-content-between " data-id="{{$i}}">
@@ -83,9 +86,9 @@
             
             </form>
       
-                <div class="btn btn-secondary "  onclick="sendFormPlaylist()">Tạo</div>
+                <div class="btn btn-secondary "  onclick="sendFormPlaylist()">Lưu</div>
                         
-            <div class="btn btn-secondary" onclick="">Xóa</div>
+
                         
             <div class="btn btn-secondary" onclick="">Trở lại</div>
 
@@ -97,4 +100,4 @@
         </script>
 
 </x-userSettingLayout>
-<script src="{{asset('js/user2.js')}}"></script>
+<script src="{{asset('js/user3.js')}}"></script>

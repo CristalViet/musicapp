@@ -5,8 +5,7 @@
     <div class="row">
         <div class="fs-1">Bài hát của mình</div>
         <div class="d-flex">
-            <input type="checkbox" name="" id="">
-            <div class="btn btn-secondary ms-1">Xóa</div>
+           
             <a href="{{route('addSong')}}">
                 <div class="btn btn-secondary ms-1">Thêm bài hát</div>
             </a>

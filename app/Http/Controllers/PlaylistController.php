@@ -89,16 +89,51 @@ class PlaylistController extends Controller
     public function edit($idplaylist)
     {   
         $playlist=playlist::find($idplaylist);
-        $listsong=DB::table('songs')->join('song_playlists','songs.id','=','song_id')->get();
-        return view('users.editPlaylist',['listsong'=>$listsong,'playlist'=>$playlist]);
+        $listsong=DB::table('songs')->join('song_playlists','songs.id','=','song_id')->select('songs.id', 'songs.title')->get();
+        return view('users.editPlaylist',['danhsachcu'=>$listsong,'playlist'=>$playlist]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+    {   
+        $playlist_Song=json_decode(request()->playlist_send) ;
+        // dd($playlist_Song);
+        $request->validate([
+            'title'=>'required|string|max:255',
+            'description'=>'nullable|string',
+           
+            'playlist_img'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        
+        $playlist = Playlist::find($id);
+        $playlist_img = $playlist->playlist_img;
+
+        if(request()->hasFile('playlist_img')){
+            $playlist_img= $request->file('playlist_img')->store('playlist_img','public');
+        }
+        song_playlist::where('playlist_id', $playlist->id)->delete();
+
+       
+
+        $playlist->update([
+            'title' => $request['title'],
+            'description' => $request['description'],
+          
+            'playlist_img' => $playlist_img,
+      
+        ]);
+
+        foreach ($playlist_Song as $song) {
+            song_playlist::create([
+                'playlist_id'=>$playlist->id,
+                'song_id'=>$song->id
+            ]);
+            
+        }
+ 
+       return redirect()->route('userPlaylists');
     }
 
     /**

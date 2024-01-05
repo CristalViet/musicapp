@@ -1,25 +1,34 @@
-
-var list=Array();
-   
-var Playlist=document.getElementById('Playlist');
-var listsongs=document.getElementById('listsongs');
-var listSongToAdd;
+//danh sách thêm vào
+let list=Array();
 
 
+const Playlist=document.getElementById('Playlist');
+const listsongs=document.getElementById('listsongs');
+let listSongToAdd;
 
-var selectedFile;
-var fileInput=document.getElementById('inputFile');
-var playlist_send=document.getElementById('playlist_send');
-var playlistForm=document.getElementById('formPlaylist');
 
-var divToShow=document.getElementById('divToShow');
+
+let selectedFile;
+const fileInput=document.getElementById('inputFile');
+const playlist_send=document.getElementById('playlist_send');
+const playlistForm=document.getElementById('formPlaylist');
+
+const divToShow=document.getElementById('divToShow');
 
 //Nạp danh sách bài hát đã được thêm trước đó nếu là tính năng edit 
 
+let danhsachcu=document.getElementById('danhsachcu');
+let danhsachcuvalue=JSON.parse(danhsachcu.value);
+console.log(danhsachcuvalue +'ne');
+if(danhsachcuvalue){
 
+    list= Object.values(danhsachcuvalue);
+    console.log(list);
+    PrintList();
+}
 function clickItem(id,title){
 
-var song={id:id,title:title};
+    let song={id:id,title:title};
 
 
 if(!list.some(s=>s.id ===id)){
@@ -32,33 +41,61 @@ PrintList();
 
 }
 
+
+
 function deleteItem(id){
 
 var BtnId=id;
 
 
+console.log(id);
 
-if(list.some(s=>s.id === id)){
-    list = list.filter(item => item['id'] !== id);
-    // console.log(song['id']);
-    deleteDiv(BtnId);
+if(list.some(s=>s.id == id)){
+
+    list = list.filter(item => item.id != id);
+    console.log(list);    // deleteDiv(BtnId);
  
-    
+
  
 }
+else console.log("That bai")
 PrintList();
-// Changdisabled();
-console.log(list);
+
 
 }
-function deleteDiv(id){
-var divToRemove=document.getElementById('playlist_'+id);
-console.log('Hello'+divToRemove);
-if (divToRemove) {
-    Playlist.removeChild(divToRemove);
-}
-}
+
+
+
+
+// function deleteDiv(id){
+ 
+// var divToRemove=document.getElementById('playlist_'+id);
+
+// if (divToRemove) {
+//     console.log('batdau');
+//     console.log(divToRemove +"đawaaw");
+//     console.log(Playlist);
+//     console.log('kethuc');
+
+   
+
+
+// }
+// }
     
+
+
+function renderList(list) {
+        
+        var html = '<ul class="list-unstyled">';
+        for (var i = 0; i < list.length; i++) {
+        
+                html += '<li class="px-1 mb-1 mt-1 list-group-item d-flex justify-content-between align-items-center" style="width:100%">' + s[i].name + '<div id="playlist_'+ s[i].id +'"  class="btn btn-secondary ml-2">Bỏ</div></li>'
+        }
+        html += '</ul>';
+        return html;
+
+    }
 
 function addDiv(song,count){
 var BtnId=song['id'];
@@ -186,8 +223,7 @@ $("#search-input").on("input", function() {
                 headers: {
                  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                   },
-
-                url: '/searchSong', // Đường dẫn tới file xử lý tìm kiếm phía server
+                url: '/user/searchSong', // Đường dẫn tới file xử lý tìm kiếm phía server
                 data: {query: query},
                 success: function(response) {
                         // $("#search-results").html(renderResults(response.songs));
@@ -196,7 +232,6 @@ $("#search-input").on("input", function() {
                         PrintListSong();
                         
                 }
-                
               
         });
         } 

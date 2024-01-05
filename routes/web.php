@@ -92,11 +92,16 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('/addPlaylist', [PlaylistController::class, 'store'])->name('storePlaylist');
     Route::delete('/playlists/{playlist}', [PlaylistController::class, 'destroy'])->name('destroyPlaylist');
     Route::get('/userplaylist/{playlist}', [SongController::class, 'playlist'])->name('detailPlaylist');
-    Route::get('/editPlaylist', [PlaylistController::class, 'edit'])->name('editPLaylistView');
+    Route::get('/editPlaylist/{playlist}', [PlaylistController::class, 'edit'])->name('editPLaylistView');
+    Route::PUT('/editPlaylist/{playlist}', [PlaylistController::class, 'update'])->name('editPlaylist');
+
     //song
     Route::get('/userSongs', [HomeController::class, 'userSongsView'])->name('userSongs');
     Route::get('/addSong', [HomeController::class, 'userAddSongsView'])->name('addSong');
     Route::post('/searchArtist', [ArtistController::class, 'searchArtist'])->name('searchArtist');
+    Route::post('/searchSong', [SongController::class, 'searchSong'])->name('searchSong');
+    Route::post('/editPlaylist/searchSong', [SongController::class, 'searchSong']);
+
 
     Route::post('/addSong', [SongController::class, 'store'])->name('storeSong');
     Route::delete('/songs/{song}', [SongController::class, 'destroy'])->name('destroySong');

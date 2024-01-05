@@ -20,7 +20,7 @@ class SongController extends Controller
     {
         $song = song::find($id);
         $author = User::find($song->user_id)->name;
-        if (Auth::check() && auth()->user()->role == 1) {
+        if (Auth::check() && auth()->user()) {
             $userId = Auth::id();
 
             // Check if the view entry already exists for the current user and song
@@ -151,9 +151,11 @@ class SongController extends Controller
             ->where('artist_song_list.song_id', $songId)
             ->select('artists.id as id', 'artists.*')
             ->get();
+           
         $song_genre = DB::table('genre_song_list')
             ->where('song_id', $songId)
             ->first();
+        
         return view('songs.edit', ['song' => $song, 'genres' => $genres, 'song_genre' => $song_genre])->with('artists', json_encode($artists));
     }
     public function update(Request $request, $id)
