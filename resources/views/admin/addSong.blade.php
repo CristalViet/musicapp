@@ -24,7 +24,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2>Tải nhạc của bạn lên FunTune</h2>
+        <h2>Tạo một playlist của bạn lên FunTune</h2>
         {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
         <form id="uploadForm" action="{{route('storeSong')}}" method="POST" enctype="multipart/form-data">
