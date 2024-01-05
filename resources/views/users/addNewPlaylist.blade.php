@@ -13,8 +13,8 @@
                     @error('title')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
-                    
-                    <div class="form-group">
+                   
+                <div class="form-group">
                             <label for="">Mô tả</label>
                             <input type="text" name="description" class="form-control">
                     </div>
@@ -24,7 +24,7 @@
                     @enderror
                     
                     <input type="file" name="playlist_img" id="inputFile" class="d-none" accept="image/*">
-                <div class="btn btn-secondary" onclick="clickFile()">Thêm tệp</div>
+                <div class="btn btn-secondary mt-2" onclick="clickFile()">Thêm tệp</div>
                 <div id="divtoShow"></div>
 
                 </div>
@@ -33,7 +33,9 @@
                     
                 @enderror
               
-                
+                <label for="">Bài hát thật</label>
+                      
+                            <input id="search-input" type="search" name="songs" class="w-40 form-control" id="" >
                  {{-- Chọn bài hát cho playlist --}}
                 <div class="row mt-5 mb-5">
                     <h2>Danh sách bài hát</h2>
@@ -69,12 +71,13 @@
                        
                         </div>
                     </div>
+                 
                     <input type="hidden"  id="playlist_send" name="playlist_send"  >
                 
                 </div>
                 
                 
-                </div>
+            </div>
                 
             
             </form>
@@ -88,5 +91,9 @@
       
    
 
+        <script>
+            
+        </script>
+
 </x-userSettingLayout>
-<script src="{{asset('js/user.js')}}"></script>
+<script src="{{asset('js/user2.js')}}"></script>

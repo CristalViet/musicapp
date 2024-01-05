@@ -22,5 +22,5 @@
             </div>
    
            <div style="height: 450px"></div>
-            <script src="{{asset('js/user.js')}}"></script>
+            {{-- <script src="{{asset('js/user.js')}}"></script> --}}
 </x-layout>

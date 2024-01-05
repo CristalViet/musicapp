@@ -7,6 +7,7 @@ use App\Models\playlist;
 use Illuminate\Http\Request;
 
 use App\Models\song_playlist;
+use Illuminate\Support\Facades\DB;
 use function Laravel\Prompts\table;
 
 class PlaylistController extends Controller
@@ -85,10 +86,11 @@ class PlaylistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($idplaylist)
     {   
-        $listsong=song::all();
-        return view('users.editPlaylist',['listsong'=>$listsong]);
+        $playlist=playlist::find($idplaylist);
+        $listsong=DB::table('songs')->join('song_playlists','songs.id','=','song_id')->get();
+        return view('users.editPlaylist',['listsong'=>$listsong,'playlist'=>$playlist]);
     }
 
     /**

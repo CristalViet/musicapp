@@ -144,5 +144,18 @@ class SongController extends Controller
         // dd($songs);
         return redirect()->route('favouriteSongs');
     }
+
+    public function searchSong(Request $request){
+
+        $query = $request->input('query');
+        if ($query) {
+            $songs = Song::where('title', 'like', '%' . $query . '%')->get();
+            
+            return response()->json(['songs' => $songs]);
+        }
+
+        return response()->json(['songs' => []]);
+
+    }
     
 }

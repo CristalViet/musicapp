@@ -1,5 +1,6 @@
 @php
     $playlist=[];
+    
 @endphp
 <x-layout>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,7 +11,7 @@
                 <h5 class=" text-xl">Trang chủ > {{$song->title}}</h5>
                 <div class="player-container">
                     <audio id="song" >
-                        <source id="source" type="audio/mpeg" src="{{asset('storage/' . $song->song_url )}}">
+                        <source id="source" type="audio/mpeg" src="{{asset('storage/'.$song->song_url)}}">
                     </audio>
                     <div class="progress-container">
                         <h4> {{$song->title}}</h4>
@@ -161,8 +162,8 @@
             progress.oninput=function(){
                 song.play()
                 song.currentTime=progress.value;
-                playicon.classList.add('fa-play')
-                playicon.classList.remove('fa-pause')
+                playicon.classList.remove('fa-play')
+                playicon.classList.add('fa-pause')
             }
             // function next(){
             //     if(currentIndex+1>=playlist.length)return;
@@ -190,16 +191,16 @@
             //     console.log(playlist[currentIndex]);
             // }
             song.addEventListener("ended", function(){
-                currentIndex++;
-                src.setAttribute("src",playlist[currentIndex])
-                song.currentTime = 0;
-                song.play();
-                console.log(playlist[currentIndex]);
-                if(!playlist[currentIndex]){
+                // currentIndex++;
+                // src.setAttribute("src",playlist[currentIndex])
+                // song.currentTime = 0;
+                // song.play();
+                // console.log(playlist[currentIndex]);
+                // if(!playlist[currentIndex]){
                     song.pause()
                     playicon.classList.add('fa-pause')
                     playicon.classList.remove('fa-play')
-                }
+                // }
             });
     </script>
 

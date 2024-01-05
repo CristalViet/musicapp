@@ -42,9 +42,8 @@
                         <label for="">Ca sĩ</label>
                         <input id="search-input" type="search" name="artist" class="form-control " id="" >
                         <div id="search-results" class="border " ></div>
-                        <h2>Danh sách nghệ sĩ</h2>
                         <div id="listAritst" >
-
+                                <input type="hidden" name="danhsachArtist">
                         </div>
                 </div>
                 <label for=""></label>

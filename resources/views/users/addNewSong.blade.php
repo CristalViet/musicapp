@@ -51,7 +51,7 @@
 </x-userSettingLayout>
 <script>
       
-      var selectedFile;
+        var selectedFile;
         var fileInput=document.getElementById('inputFile');
         var fileInfoDiv=document.getElementById('fileInfo'); 
         var fileInfoDiv2=document.getElementById('fileInfo2'); 
@@ -81,7 +81,7 @@
                
 
         }
-         $(document).ready(function() {
+        $(document).ready(function() {
                 $("#search-input").on("input", function() {
                         var query = $(this).val();
 
@@ -95,37 +95,38 @@
                                 url: 'searchArtist', // Đường dẫn tới file xử lý tìm kiếm phía server
                                 data: {query: query},
                                 success: function(response) {
-                                        $("#search-results").html(renderResults(response.artists));
+                                        console.log(songs);
+                                        $("#search-results").html(renderResults(response.songs));
                                         
-                                        response.artists.forEach(artist => {
-                                                document.getElementById("art"+artist.id).addEventListener("click", function(event) {
+                                        response.songs.forEach(song => {
+                                                document.getElementById("s"+song.id).addEventListener("click", function(event) {
 
                                                 if (event.target.classList.contains("btn")) {
                                         // Xử lý khi nút được click
-                                        if(!checkExistArtist(artist)){
-                                                        listArtists.push(artist);
+                                        // if(!checkExistSong(song)){
+                                        //                 listArtists.push(song);
                                             
-                                               $("#listAritst").html(renderList(listArtists));
+                                        //        $("#listSong").html(renderList(listArtists));
                                                
 
-                                               listArtists.forEach(art2 => {
-                                                document.getElementById("artt"+art2.id).addEventListener("click", function(event) {
+                                        //        listArtists.forEach(art2 => {
+                                        //         document.getElementById("artt"+art2.id).addEventListener("click", function(event) {
 
-                                                if (event.target.classList.contains("btn")) {
-                                        // Xử lý khi nút được click
+                                        //         if (event.target.classList.contains("btn")) {
+                                        // // Xử lý khi nút được click
                                         
                                
-                                        listArtists = listArtists.filter(artist3 => artist3.id !== art2.id);
-                                            console.log(listArtists);
-                                            $("#listAritst").html(renderList(listArtists));
+                                        // listArtists = listArtists.filter(artist3 => artist3.id !== art2.id);
+                                        //     console.log(listArtists);
+                                        //     $("#listAritst").html(renderList(listArtists));
                                 
                                         
-                                        // console.log(listArtists);
-                                        }
-                                        });
+                                        // // console.log(listArtists);
+                                        // }
+                                        // });
 
-                                        });
-                                        }
+                                        // });
+                                        // }
                                         
                                         
                                         // console.log(listArtists);
@@ -142,10 +143,10 @@
                         }
                 });
         });
-        function checkExistArtist(artist){
-                listArtists.forEach(art => {
+        function checkExistSong(Checkedsong){
+                listSongs.forEach(song => {
                  
-                        if(art.id==artist.id){
+                        if(song.id==Checkedsong.id){
                                 console.log("Check ne");
                                 return true;
                                
@@ -154,10 +155,10 @@
                 return false;
               
         }
-        function renderResults(artists) {
+        function renderResults(songs) {
         var html = '<ul class="list-unstyled">';
-        for (var i = 0; i < artists.length; i++) {
-                if(!listArtists.includes(artists[i])){
+        for (var i = 0; i < songs.length; i++) {
+                if(!listArtists.includes(songs[i])){
                         html += '<li >' + artists[i].name + '<div id="art'+ artists[i].id +'"  class="btn btn-warning">Thêm</div></li>'
                 }
                 else html += '<li>' + artists[i].name + '<div id="art'+ artists[i].id +'"  class="btn btn-warning disabled">Thêm</div></li>'
@@ -165,30 +166,29 @@
         }
         html += '</ul>';
         return html;
-}
-        function shirtArtist(artist){
-                listArtists.forEach(art => {
-                        if(art.id==artist.id){
-                                listArtists.shift();
-                        }
-                });
         }
-        function renderList(artists) {
+        // function shiftSong(song){
+        //         listSongs.forEach(song => {
+        //                 if(art.id==artist.id){
+        //                         listArtists.shift();
+        //                 }
+        //         });
+        // }
+        // function renderList(artists) {
         
-        var html = '<ul class="list-unstyled">';
-        for (var i = 0; i < artists.length; i++) {
+        // var html = '<ul class="list-unstyled">';
+        // for (var i = 0; i < artists.length; i++) {
         
-                        html += '<li>' + artists[i].name + '<div id="artt'+ artists[i].id +'"  class="btn btn-secondary">Bỏ</div></li>'
+        //                 html += '<li>' + artists[i].name + '<div id="artt'+ artists[i].id +'"  class="btn btn-secondary">Bỏ</div></li>'
                 
           
          
-        }
-        html += '</ul>';
-        return html;
+        // }
+        // html += '</ul>';
+        // return html;
 
         
-        
-    }
+        // }
 
         
 </script>
