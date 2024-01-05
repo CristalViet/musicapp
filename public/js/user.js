@@ -12,12 +12,8 @@
     console.log(listSongToAdd);
     var divToShow=document.getElementById('divToShow');
     PrintListSong();
-function Test(){
-    console.log('Hello')
-}
-function creatDiv(){
-    
-}
+
+
 function clickItem(id,title){
    
     var song={id:id,title:title};
@@ -98,9 +94,7 @@ function PrintList(){
         addDiv(song,count);
     });
 }
-function Changdisabled(id) {
-    
-}
+
 Playlist.addEventListener('click',function(event){
     var target = event.target;
     console.log("Da click")
@@ -159,16 +153,79 @@ function clickFile(){
         // divToShow.innerHTML=contentDiv;
         })
 }
-// function addFile(){
-//     if(selectedFile==null){
-//         alert('Hãy chọn tệp');
 
-//     }
-//     else{
-//         // alert('Tải lên tệp thành công ' + selectedFile.name);
-        
-//         document.getElementById('uploadForm').submit();
-//     }
-       
+//ajax
+$(document).ready(function() {
+    $("#search-input").on("input", function() {
+            var query = $(this).val();
 
-// }
+            if (query !== "") {
+            $.ajax({
+                    type: "POST",
+                    headers: {
+                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                      },
+
+                    url: 'searchArtist', // Đường dẫn tới file xử lý tìm kiếm phía server
+                    data: {query: query},
+                    success: function(response) {
+                            $("#search-results").html(renderResults(response.songs));
+                            
+                            response.songs.forEach(song => {
+                                    document.getElementById("s"+artist.id).addEventListener("click", function(event) {
+
+                                    if (event.target.classList.contains("btn")) {
+                            // Xử lý khi nút được click
+                            if(!checkExistArtist(artist)){
+                                            listArtists.push(artist);
+                                
+                                   $("#listAritst").html(renderList(listArtists));
+                                   
+
+                                   listArtists.forEach(art2 => {
+                                    document.getElementById("artt"+art2.id).addEventListener("click", function(event) {
+
+                                    if (event.target.classList.contains("btn")) {
+                            // Xử lý khi nút được click
+                            
+                   
+                            listArtists = listArtists.filter(artist3 => artist3.id !== art2.id);
+                                console.log(listArtists);
+                                $("#listAritst").html(renderList(listArtists));
+                    
+                            
+                            // console.log(listArtists);
+                            }
+                            });
+
+                            });
+                            }
+                            
+                            
+                            // console.log(listArtists);
+                            }
+                            });
+
+                            });
+                    }
+                  
+            });
+            } else {
+            $("#search-results").html("");
+            console.log('đã thực hiện');
+            }
+    });
+});
+
+function checkExistSongs(artist){
+    listArtists.forEach(song => {
+     
+            if(art.id==artist.id){
+                    console.log("Check ne");
+                    return true;
+                   
+            }
+    });
+    return false;
+  
+}

@@ -53,7 +53,7 @@
       </li>
       {{-- Quản lí playlist --}}
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route('admin.managePlaylist')}}" class="nav-link">
           <i class="nav-icon fas fa-chart-pie"></i>
           <p>
             Quản lí playlist

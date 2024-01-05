@@ -5,8 +5,7 @@
     <div class="row" >
         <div class="fs-1">Playlist của bạn</div>
         <div class="d-flex">
-            <input type="checkbox" name="" id="">
-            <div class="btn btn-secondary ms-1">Xóa</div>
+          
             <a href="{{route('addPlaylist')}}">
                 <div class="btn btn-secondary ms-1">Tạo playlist mới</div>
             </a>
@@ -36,7 +35,7 @@
                      
                      
                         <div >
-                            <a href="{{route('editPLaylistView')}}">
+                            <a href="editPlaylist/{{$playlist->id}}">
                                 <button  class=" ms-1 btn btn-primary ">
                                     <i class="fa-solid fa-pen-to-square"></i> Sửa
                                 </button>
@@ -96,4 +95,5 @@
         </table>
         
     </div>
+
 </x-userSettingLayout>

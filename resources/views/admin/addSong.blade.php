@@ -24,7 +24,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h2>Tải nhạc của bạn lên FunTune</h2>
+        <h2>Tạo một playlist của bạn lên FunTune</h2>
         {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
         <form id="uploadForm" action="{{route('storeSong')}}" method="POST" enctype="multipart/form-data">
@@ -42,9 +42,8 @@
                         <label for="">Ca sĩ</label>
                         <input id="search-input" type="search" name="artist" class="form-control " id="" >
                         <div id="search-results" class="border " ></div>
-                        <h2>Danh sách nghệ sĩ</h2>
                         <div id="listAritst" >
-
+                                <input type="hidden" name="danhsachArtist">
                         </div>
                 </div>
                 <label for=""></label>

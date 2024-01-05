@@ -62,6 +62,7 @@
         <div id="fileInfo2"></div>
     </form>
 </x-userSettingLayout>
+ 
 
 <script>
         const imageFileInput = document.getElementById('song_img');
@@ -71,6 +72,7 @@
         const selectImg=()=>{
                 imageFileInput.click();
         }
+
 
         imageFileInput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
@@ -153,6 +155,7 @@ function bindAddArtistListeners(artists) {
     });
 }
 
+
 function bindRemoveArtistListeners() {
     listArtists.forEach(artist => {
         var removeButton = document.getElementById("artt" + artist.id);
@@ -168,6 +171,7 @@ function bindRemoveArtistListeners() {
                 updateArtistIdsInput();
             }
         });
+
     });
 }
         function updateArtistIdsInput() {
@@ -182,12 +186,14 @@ function bindRemoveArtistListeners() {
         for (var i = 0; i < artists.length; i++) {
                 if(!listArtists.includes(artists[i])){
                         html += '<li class="px-1 mb-1 mt-1 list-group-item d-flex justify-content-between align-items-center" style="width:100%"><p>' + artists[i].name + '</p><div id="art'+ artists[i].id +'"  class="btn btn-warning ml-8">Thêm</div></li>'
+
                 }
                 else html += '<li class="px-1 mb-1 mt-1 list-group-item d-flex justify-content-between align-items-center" style="width:100%">' + artists[i].name + '<div id="art'+ artists[i].id +'"  class="btn btn-warning disabled">Thêm</div></li>'
          
         }
         html += '</ul>';
         return html;
+
         }
         function shiftArtist(artist){
                 listArtists.forEach(art => {
@@ -195,12 +201,21 @@ function bindRemoveArtistListeners() {
                                 listArtists.shift();
                         }
                 });
+
         }
-        function renderList(artists) {
+        // function shiftSong(song){
+        //         listSongs.forEach(song => {
+        //                 if(art.id==artist.id){
+        //                         listArtists.shift();
+        //                 }
+        //         });
+        // }
+        // function renderList(artists) {
         
-        var html = '<ul class="list-unstyled">';
-        for (var i = 0; i < artists.length; i++) {
+        // var html = '<ul class="list-unstyled">';
+        // for (var i = 0; i < artists.length; i++) {
         
+
                 html += '<li class="px-1 mb-1 mt-1 list-group-item d-flex justify-content-between align-items-center" style="width:100%">' + artists[i].name + '<div id="artt'+ artists[i].id +'"  class="btn btn-secondary ml-2">Bỏ</div></li>'
         }
         html += '</ul>';
@@ -208,4 +223,5 @@ function bindRemoveArtistListeners() {
 
     }
      
+
 </script>

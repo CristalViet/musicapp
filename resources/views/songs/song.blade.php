@@ -1,10 +1,12 @@
 @php
     $playlist=[];
+
     if(!$song->song_img){
         $song->song_img="https://alikinvv.github.io/minimal-player/build/img/album.jpg";
     }else{
         $song->song_img=asset('storage/'.$song->song_img);
     }
+
 @endphp
 <x-layout>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -166,8 +168,10 @@
             }
             progress.oninput=function(){
                 song.play()
+
                 // song.currentTime=progress.value;
                 song.currentTime = (progress.value / 100) * song.duration;
+
                 playicon.classList.remove('fa-play')
                 playicon.classList.add('fa-pause')
             }
@@ -204,8 +208,10 @@
                 // console.log(playlist[currentIndex]);
                 // if(!playlist[currentIndex]){
                     song.pause()
+
                     playicon.classList.remove('fa-pause')
                     playicon.classList.add('fa-play')
+
                 // }
             });
     </script>
